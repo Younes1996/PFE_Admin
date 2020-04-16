@@ -1,10 +1,78 @@
 
-<app-na></app-na>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <br>
+<app-na></app-na>
+<br>
+
+
+
+
+
+<!--Carousel Wrapper-->
+<div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
+	<!--Indicators-->
+	<ol class="carousel-indicators">
+		<li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+		<li data-target="#carousel-example-2" data-slide-to="1"></li>
+		<li data-target="#carousel-example-2" data-slide-to="2"></li>
+	</ol>
+	<!--/.Indicators-->
+	<!--Slides-->
+	<div class="carousel-inner" role="listbox">
+		<div class="carousel-item active">
+			<div class="view">
+				<img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(68).jpg"
+					 alt="First slide">
+				<div class="mask rgba-black-light"></div>
+			</div>
+			<div class="carousel-caption">
+				<h3 class="h3-responsive">Light mask</h3>
+				<p>First text</p>
+			</div>
+		</div>
+		<div class="carousel-item">
+			<!--Mask color-->
+			<div class="view">
+				<img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(6).jpg"
+					 alt="Second slide">
+				<div class="mask rgba-black-strong"></div>
+			</div>
+			<div class="carousel-caption">
+				<h3 class="h3-responsive">Strong mask</h3>
+				<p>Secondary text</p>
+			</div>
+		</div>
+		<div class="carousel-item">
+			<!--Mask color-->
+			<div class="view">
+				<img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(9).jpg"
+					 alt="Third slide">
+				<div class="mask rgba-black-slight"></div>
+			</div>
+			<div class="carousel-caption">
+				<h3 class="h3-responsive">Slight mask</h3>
+				<p>Third text</p>
+			</div>
+		</div>
+	</div>
+	<!--/.Slides-->
+	<!--Controls-->
+	<a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="sr-only">Previous</span>
+	</a>
+	<a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="sr-only">Next</span>
+	</a>
+	<!--/.Controls-->
+</div>
+<!--/.Carousel Wrapper-->
+<!-- Card -->
 
 <div class="container">
 	<div class="table-wrapper">
@@ -14,7 +82,7 @@
 					<h2>Gestions des <b>Employees</b></h2>
 				</div>
 				<div class="col-sm-6">
-					<a (click)="basicModal.show()" class="h" data-toggle="modal"><i class="material-icons">&#xe7fe;</i> <span></span></a>
+					<a href="#addModel" class="h" data-toggle="modal"><i class="material-icons">&#xe7fe;</i> <span></span></a>
 				</div>
 			</div>
 		</div>
@@ -41,21 +109,19 @@
 			<tbody>
 
 
-			<tr *ngFor="let c of contacts ">
+			<tr >
 				<td>
 							<span class="custom-checkbox">
 								<input type="checkbox" id="checkbox1" name="options[]" value="1">
 								<label for="checkbox1"></label>
 							</span>
 				</td>
-				<td>{{c.nom}}</td>
-				<td>{{c.prenom}}</td>
-				<td>{{c.date_N}}</td>
-				<td>{{c.email}}</td>
-				<td>{{c.tel}}</td>
-				<td>
+				<td >ali</td>
+				<td >ali</td>
+				<td >ali</td>				<td >ali</td>
+				<td >ali</td>				<td>
 
-					<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xe8f4;</i></a>
+					<a (click)="edit()" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xe8f4;</i></a>
 					<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 					<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 				</td>
@@ -174,19 +240,19 @@
 
 
 
-<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
+<div class="modal fade" id="addModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-scrollable" role="document">
 		<div class="modal-content">
 			<div class="modal-header" style="background-color: rgb(20, 91, 161);font-family: garamond;color: white;">
-				<button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
-					<span aria-hidden="true">×</span>
+				<h4 class="modal-title w-100" id="myModelTitle"> <i class="material-icons">&#xe7fe;</i> Nouveau Employé</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title w-100" id="myModalLabel"> <i class="material-icons">&#xe7fe;</i> Nouveaux Employé</h4>
 			</div>
 			<div class="modal-body" >
 
                 .
-				<form #clientForm="ngForm" (ngSubmit)="saveEngin()">
+				<form #clientForm="ngForm" >
 					<div class="md-form md-outline">
 					<input mdbInput  name="noms" type="email" id="form1" class="form-control" [(ngModel)]="contact.nom"
 						   required
@@ -253,7 +319,7 @@
 
 
 
-						<button type="submit" class="btn btn-primary"  style="background-color: rgb(20, 91, 161);font-size: 18px;font-family: Garamond" [disabled]="!clientForm.valid">Enregistrer    </button>
+						<button type="submit" class="btn btn-primary" (click)="saveEngin()" style="background-color: rgb(20, 91, 161);font-size: 18px;font-family: Garamond" [disabled]="!clientForm.valid">Enregistrer    </button>
 
 				</form>
 
@@ -261,6 +327,7 @@
 
 		  </div>
 	</div>
+</div>
 </div>
 <!-- Default form login
 <form class="text-center border border-light p-5" action="#!">

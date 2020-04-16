@@ -1,51 +1,426 @@
+
 <app-na></app-na>
 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<br>
 
-<div class="row">
+<div class="table-wrapper">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Gestions des <b>Clients</b></h2>
+            </div>
+            <div class="col-sm-6">
+                <a href="#addEmployeeModal" class="h" data-toggle="modal"><i class="material-icons">&#xe7fe;</i> <span></span></a>
 
-     <div class="col-md-6">
-  
-      
-      <fieldset class="scheduler-border">
-      <legend class="scheduler-border">Information </legend>
-    <div class="control-group">
-          <div class="md-form md-outline">
-            <input mdbInput  name="email" type="email" id="form8" class="form-control" [(ngModel)]="nom" #input="ngModel" >
-            <label for="form2">Nom</label>
-          </div>
-          <div class="md-form md-outline">
-            <input mdbInput  name="email" type="email" id="form8" class="form-control" [(ngModel)]="prenom" #input="ngModel" >
-            <label for="form2">Prénom</label>
-          </div>
-          <div class="md-form md-outline">
-            <input mdbInput  name="email" type="email" id="form8" class="form-control" [(ngModel)]="adresse" #input="ngModel" >
-            <label for="form2">Adresse</label>
-          </div>
-          <div class="md-form md-outline">
-            <input mdbInput  name="email" type="tel" id="form8" class="form-control" [(ngModel)]="tel" #input="ngModel"  >
-            <label for="form2">Tél</label>
-          </div>
-          
-          <select class="form-control">
-            <option value=""disabled selected>Type client</option>
-            <option value="+47">Agriculteur</option>
-            <option value="+46">Multiplicateur</option>
-            <option value="+45">Danmark</option>
-          </select>
-
-
+            </div>
+        </div>
     </div>
-    
+    <table  class="table table-striped " >
+        <thead>
+        <tr>
+            <th>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="selectAll">
+								<label for="selectAll"></label>
+							</span>
+            </th>
 
-</fieldset>
+            <th>N° </th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Adresse</th>
+            <th>Tél</th>
+            <th>Wilaya</th>
+            <th>Daira</th>
+            <th>Action</th>
+
+
+
+
+        </tr>
+        </thead>
+        <tbody >
+
+
+        <tr *ngFor=" let c of list_Client " >
+            <td>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="checkbox1" name="options[]" value="1">
+								<label for="checkbox1"></label>
+							</span>
+            </td>
+            <td>{{c.id}}</td>
+            <td>{{c.nom}}</td>
+            <td>{{c.prenom}}</td>
+            <td>{{c.adresse}}</td>
+            <td>{{c.tel}}</td>
+            <td>{{c.wilaya}}</td>
+            <td>{{c.daira}}</td>
+
+
+
+
+            <td>
+
+                <a  href="#editEmployeeModal"      class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xe8f4;</i></a>
+                <a href="#editModal" (click)="get_Info(c)"   class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                <a (click)="delete_client(c.id)" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+            </td>
+        </tr>
+
+
+        </tbody>
+    </table>
+    <div class="clearfix">
+        <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+        <ul class="pagination">
+            <li class="page-item disabled"><a href="#">Previous</a></li>
+            <li class="page-item"><a href="#" class="page-link">1</a></li>
+
+            <li class="page-item"><a href="#" class="page-link">Next</a></li>
+        </ul>
+    </div>
+</div>
+<!-- edit Modal HTML -->
+<div id="editModal" class="modal fade">
+    <div  class="modal-dialog modal-dialog-scrollable" role="document" >
+        <div class="modal-content">
+
+            <div class="modal-header" style="background-color: rgb(20, 91, 161);font-family: garamond;color: white;">
+                <h4 class="modal-title w-100" id="editHeader"> <i class="material-icons">&#xe7fe;</i> Modifier Client</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body" >  <!--  Start Body                 !-->
+                <form #client="ngForm" >
+                    <div class="md-form md-outline">
+                        <input mdbInput  name="id" type="text" id="id" class="form-control" [(ngModel)]="cl.id"
+                               required
+                               #id="ngModel"
+                               [ngClass]="{'is-invalid':id.errors && id.touched}"
+                               disabled
+                        >
+                        <label for="id">N° Client</label>
+                        <div [hidden]="!id.errors?.required" class="invalid-feedback" >
+                            le N° est obligatoir
+
+                        </div>
+                    </div>
+                    <div class="md-form md-outline">
+                        <input mdbInput  name="edit_Nom" type="text" id="edit_Nom" class="form-control" [(ngModel)]="cl.nom"
+                               required
+                               #edit_Nom="ngModel"
+                               [ngClass]="{'is-invalid':edit_Nom.errors && edit_Nom.touched}"
+                        >
+                        <label for="edit_Nom">Nom</label>
+                        <div [hidden]="!edit_Nom.errors?.required" class="invalid-feedback" >
+                            le Nom est obligatoir
+
+                        </div>
+                    </div>
+                    <div class="md-form md-outline">
+                        <input mdbInput  name="edit_Prenom" type="text" id="edit_Prenom" class="form-control" [(ngModel)]="cl.prenom"
+                               required
+                               #edit_Prenom="ngModel"
+                               [ngClass]="{'is-invalid':edit_Prenom.errors && edit_Prenom.touched}"
+                        >
+                        <label for="edit_Prenom">Prénom</label>
+                        <div [hidden]="!edit_Prenom.errors?.required" class="invalid-feedback" >
+                            le Prénom est obligatoir
+
+                        </div>
+                    </div>
+
+                    <div class="md-form md-outline">
+                        <input mdbInput  name="edit_Adresse" type="text" id="edit_Adresse" class="form-control" [(ngModel)]="cl.adresse"
+                               required
+                               #edit_Adresse="ngModel"
+                               [ngClass]="{'is-invalid':edit_Adresse.errors && edit_Adresse.touched}"
+                        >
+                        <label for="edit_Adresse">Adresse</label>
+                        <div [hidden]="!edit_Adresse.errors?.required" class="invalid-feedback" >
+
+                        </div>
+                    </div>
+                    <div class="md-form md-outline">
+                        <input mdbInput  name="edit_tel" type="text" id="edit_tel" class="form-control" [(ngModel)]="cl.tel"
+                               required
+                               #edit_tel="ngModel"
+                               [ngClass]="{'is-invalid':edit_tel.errors && edit_tel.touched}"
+                        >
+                        <label for="edit_tel">Tél</label>
+                        <div [hidden]="!edit_tel.errors?.required" class="invalid-feedback" >
+
+                        </div>
+                    </div>
+
+                    <div class="md-form md-outline">
+                        <input mdbInput  name="edit_carte" type="text" id="edit_carte" class="form-control" [(ngModel)]="cl.carte_n"
+                               required
+                               #edit_carte="ngModel"
+                               [ngClass]="{'is-invalid':edit_carte.errors && edit_carte.touched}"
+                        >
+                        <label for="edit_carte">Carte Nationnel</label>
+                        <div [hidden]="!carte.errors?.required" class="invalid-feedback" >
+                            le N° est obligatoir
+
+                        </div>
+                    </div>
+                    <div class="md-form md-outline">
+                        <input mdbInput  name="edit_date_d" type="text" id="edit_date_d" class="form-control" [(ngModel)]="cl.date_d"
+                               required
+                               #edit_date_d="ngModel"
+                               [ngClass]="{'is-invalid':edit_date_d.errors && edit_date_d.touched}"
+                        >
+                        <label for="edit_date_d">Date délivré</label>
+                        <div [hidden]="!edit_date_d.errors?.required" class="invalid-feedback" >
+
+                        </div>
+                    </div>
+                    <div class="md-form md-outline">
+                        <input mdbInput  name="edit_dairaD" type="text" id="edit_dairaD" class="form-control" [(ngModel)]="cl.daira_d"
+                               required
+                               #edit_dairaD="ngModel"
+                               [ngClass]="{'is-invalid':edit_dairaD.errors && edit_dairaD.touched}"
+                        >
+                        <label for="edit_dairaD">Daira dé</label>
+                        <div [hidden]="!edit_dairaD.errors?.required" class="invalid-feedback" >
+
+                        </div>
+                    </div>
+                    <div class="md-form md-outline">
+                        <input mdbInput  name="edit_carte_f" type="text" id="edit_carte_f" class="form-control" [(ngModel)]="cl.carteF"
+                               required
+                               #edit_carte_f="ngModel"
+                               [ngClass]="{'is-invalid':edit_carte_f.errors && edit_carte_f.touched}"
+                        >
+                        <label for="edit_carte_f">Carte Fellah</label>
+                        <div [hidden]="!edit_carte_f.errors?.required" class="invalid-feedback" >
+
+                        </div>
+                    </div>
+                    <div class="md-form md-outline">
+                        <input mdbInput  name="edit_annee_cf" type="text" id="edit_annee_cf" class="form-control" [(ngModel)]="cl.carteF_d"
+                               required
+                               #edit_annee_cf="ngModel"
+                               [ngClass]="{'is-invalid':edit_annee_cf.errors && edit_annee_cf.touched}"
+                        >
+                        <label for="edit_annee_cf">Année Carte_F</label>
+                        <div [hidden]="!annee_cf.errors?.required" class="invalid-feedback" >
+
+                        </div>
+                    </div>
+                    <div class="md-form md-outline">
+
+                        <select  name="edit_wilaya" id="edit_wilaya" [(ngModel)]="cl.wilaya" class="browser-default custom-select">
+                            <option value="" disabled selected hidden>Wilaya</option>
+                            <option > Adrar</option>
+                            <option > Alger </option>
+                        </select>
+
+                    </div>
+                    <div class="md-form md-outline">
+
+                        <select  name="edit_daira" id="edit_daira" [(ngModel)]="cl.daira" class="browser-default custom-select">
+                            <option value="" disabled selected hidden>Daira</option>
+                            <option > el eulma</option>
+                            <option > Guelta  </option>
+
+                        </select>
+
+                    </div>
+                    <div class="md-form md-outline">
+                        <select  name="edit_comune" id="edit_comune"  class="browser-default custom-select" [(ngModel)]="cl.commune">
+                            <option value="" disabled selected hidden>Commune</option>
+                            <option > Bazer sakhra</option>
+                            <option > El Eulma </option>
+
+
+                        </select>
+
+                    </div>
+
+
+                </form>
+
+            </div> <!--  finish Body                 !-->
+
+            <div class="modal-footer" style="background-color: white">
+                <button type="submit" class="btn btn-outline-primary" (click)="update_Client()">Metre a jour</button>
+                <button class="btn btn-danger" data-dismiss="modal">Annuler</button>
+
+            </div>
+
+        </div>
+    </div>
 </div>
 
-<div class="col-md-6">
-    <fieldset class="scheduler-border">
 
-    <legend class="scheduler-border">Opération </legend>
+<!-- edit Modal HTML -->
+<!-- add Modal HTML -->
+<div id="addEmployeeModal" class="modal fade">
+    <div  class="modal-dialog modal-dialog-scrollable" role="document" >
+        <div class="modal-content">
 
-  </fieldset>
-</div> 
+                <div class="modal-header" style="background-color: rgb(20, 91, 161);font-family: garamond;color: white;">
+                    <h4 class="modal-title w-100" id="myModelTitle"> <i class="material-icons">&#xe7fe;</i> Nouveau Client</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body" >  <!--  Start Body                 !-->
+                    <form #client="ngForm" >
+                    <div class="md-form md-outline">
+                        <input mdbInput  name="Nom" type="text" id="Nom" class="form-control" [(ngModel)]="cl.nom"
+                               required
+                               #Nom="ngModel"
+                               [ngClass]="{'is-invalid':Nom.errors && Nom.touched}"
+                        >
+                        <label for="Nom">Nom</label>
+                        <div [hidden]="!Nom.errors?.required" class="invalid-feedback" >
+                            le Nom est obligatoir
+
+                        </div>
+                    </div>
+                    <div class="md-form md-outline">
+                        <input mdbInput  name="Prenom" type="text" id="Prenom" class="form-control" [(ngModel)]="cl.prenom"
+                               required
+                               #Prenom="ngModel"
+                               [ngClass]="{'is-invalid':Prenom.errors && Prenom.touched}"
+                        >
+                        <label for="Nom">Prénom</label>
+                        <div [hidden]="!Prenom.errors?.required" class="invalid-feedback" >
+                            le Prénom est obligatoir
+
+                        </div>
+                    </div>
+
+                    <div class="md-form md-outline">
+                        <input mdbInput  name="Adresse" type="text" id="Adresse" class="form-control" [(ngModel)]="cl.adresse"
+                               required
+                               #Adresse="ngModel"
+                               [ngClass]="{'is-invalid':Adresse.errors && Adresse.touched}"
+                        >
+                        <label for="Adresse">Adresse</label>
+                        <div [hidden]="!Adresse.errors?.required" class="invalid-feedback" >
+
+                        </div>
+                    </div>
+                    <div class="md-form md-outline">
+                        <input mdbInput  name="_tel" type="text" id="_tel" class="form-control" [(ngModel)]="cl.tel"
+                               required
+                               #_tel="ngModel"
+                               [ngClass]="{'is-invalid':_tel.errors && _tel.touched}"
+                        >
+                        <label for="_tel">Tél</label>
+                        <div [hidden]="!_tel.errors?.required" class="invalid-feedback" >
+
+                        </div>
+                    </div>
+
+                        <div class="md-form md-outline">
+                            <input mdbInput  name="carte" type="text" id="carte" class="form-control" [(ngModel)]="cl.carte_n"
+                                   required
+                                   #carte="ngModel"
+                                   [ngClass]="{'is-invalid':carte.errors && carte.touched}"
+                            >
+                            <label for="carte">Carte Nationnel</label>
+                            <div [hidden]="!carte.errors?.required" class="invalid-feedback" >
+                                le N° est obligatoir
+
+                            </div>
+                        </div>
+                    <div class="md-form md-outline">
+                        <input mdbInput  name="date_d" type="text" id="date_d" class="form-control" [(ngModel)]="cl.date_d"
+                               required
+                               #date_d="ngModel"
+                               [ngClass]="{'is-invalid':date_d.errors && date_d.touched}"
+                        >
+                        <label for="date_d">Date délivré</label>
+                        <div [hidden]="!date_d.errors?.required" class="invalid-feedback" >
+
+                        </div>
+                    </div>
+                    <div class="md-form md-outline">
+                        <input mdbInput  name="dairaD" type="text" id="dairaD" class="form-control" [(ngModel)]="cl.daira_d"
+                               required
+                               #dairaD="ngModel"
+                               [ngClass]="{'is-invalid':dairaD.errors && dairaD.touched}"
+                        >
+                        <label for="dairaD">Daira dé</label>
+                        <div [hidden]="!dairaD.errors?.required" class="invalid-feedback" >
+
+                        </div>
+                    </div>
+                    <div class="md-form md-outline">
+                        <input mdbInput  name="carte_f" type="text" id="carte_f" class="form-control" [(ngModel)]="cl.carteF"
+                               required
+                               #carte_f="ngModel"
+                               [ngClass]="{'is-invalid':carte_f.errors && carte_f.touched}"
+                        >
+                        <label for="carte_f">Carte Fellah</label>
+                        <div [hidden]="!carte_f.errors?.required" class="invalid-feedback" >
+
+                        </div>
+                    </div>
+                    <div class="md-form md-outline">
+                        <input mdbInput  name="annee_cf" type="text" id="annee_cf" class="form-control" [(ngModel)]="cl.carteF_d"
+                               required
+                               #annee_cf="ngModel"
+                               [ngClass]="{'is-invalid':annee_cf.errors && annee_cf.touched}"
+                        >
+                        <label for="annee_cf">Année Carte_F</label>
+                        <div [hidden]="!annee_cf.errors?.required" class="invalid-feedback" >
+
+                        </div>
+                    </div>
+                        <div class="md-form md-outline">
+
+                            <select  name="wilaya" id="wilaya" [(ngModel)]="cl.wilaya" class="browser-default custom-select">
+                                <option value="" disabled selected hidden>Wilaya</option>
+                                <option > Adrar</option>
+                                <option > Alger </option>
+                            </select>
+
+                        </div>
+                        <div class="md-form md-outline">
+
+                            <select  name="daira" id="daira" [(ngModel)]="cl.daira" class="browser-default custom-select">
+                                <option value="" disabled selected hidden>Daira</option>
+                                <option > el eulma</option>
+                                <option > Guelta  </option>
+
+                            </select>
+
+                        </div>
+                        <div class="md-form md-outline">
+                            <select  name="comune" id="comune"  class="browser-default custom-select" [(ngModel)]="cl.commune">
+                                <option value="" disabled selected hidden>Commune</option>
+                                <option > Bazer sakhra</option>
+                                <option > El Eulma </option>
+
+
+                            </select>
+
+                        </div>
+
+
+                    </form>
+
+                </div> <!--  finish Body                 !-->
+
+                <div class="modal-footer" style="background-color: white">
+                    <button type="submit" class="btn btn-outline-primary" (click)="add_Client()">Ajouter</button>
+                    <button class="btn btn-danger" data-dismiss="modal">Annuler</button>
+
+                </div>
+
+        </div>
+    </div>
+</div>
+<!-- add Modal HTML -->
+
+
+
 

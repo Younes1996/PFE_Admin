@@ -4,236 +4,514 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <br>
 
-    <div class="container">
-        <div class="table-wrapper">
-            <div class="table-title">
-                <div class="row">
-                    <div class="col-sm-6">
-						<h2>Gestions des <b>Employees</b></h2>
-					</div>
-					<div class="col-sm-6">
-            <a (click)="basicModal.show()" class="h" data-toggle="modal"><i class="material-icons">&#xe7fe;</i> <span></span></a>
-					</div>
-                </div>
-            </div>
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-						<th>
+	<div class="table-wrapper">
+		<div class="table-title">
+			<div class="row">
+				<div class="col-sm-6">
+					<h2>Gestions des <b>Employees</b></h2>
+				</div>
+				<div class="col-sm-6">
+					<a href="#addModel" class="h" data-toggle="modal"><i class="material-icons">&#xe7fe;</i> <span></span></a>
+
+				</div>
+			</div>
+		</div>
+		<table *ngIf="contacts" class="table table-striped " >
+			<thead>
+			<tr>
+				<th>
 							<span class="custom-checkbox">
 								<input type="checkbox" id="selectAll">
 								<label for="selectAll"></label>
 							</span>
-						</th>
-						
-                        <th>Name</th>
-                        <th>Prénom</th>
-						<th>Date Naissance</th>
-                        <th>Email</th>
-						<th>Tél</th>
-						<th>Action</th>
+				</th>
+
+				<th>N° </th>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th>Adresse</th>
+				<th>Tél</th>
+				<th>Catégorie</th>
+				<th>Fonction</th>
+				<th>Décision</th>
+
+				<th>Action</th>
 
 
-					</tr>
-                </thead>
-                <tbody>
 
 
-				<tr *ngFor="let c of contacts ">
-					<td>
+			</tr>
+			</thead>
+			<tbody>
+
+
+			<tr *ngFor=" let c of contacts" >
+				<td>
 							<span class="custom-checkbox">
 								<input type="checkbox" id="checkbox1" name="options[]" value="1">
 								<label for="checkbox1"></label>
 							</span>
-					</td>
-					<td>{{c.nom}}</td>
-					<td>{{c.prenom}}</td>
-					<td>{{c.date_N}}</td>
-					<td>{{c.email}}</td>
-					<td>{{c.tel}}</td>
-                        <td>
-
-							<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xe8f4;</i></a>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                        </td>
-                    </tr>
+				</td>
+				<td>{{c.id}}</td>
+				<td>{{c.nom}}</td>
+				<td>{{c.prenom}}</td>
+				<td>{{c.adresse}}</td>
+				<td>{{c.tel}}</td>
+				<td>{{c.categorie}}</td>
+				<td>{{c.fonction}}</td>
+				<td>{{c.decision}}</td>
 
 
-                </tbody>
-            </table>
-			<div class="clearfix">
-                <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-                <ul class="pagination">
-                    <li class="page-item disabled"><a href="#">Previous</a></li>
-                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                    <li class="page-item"><a href="#" class="page-link">5</a></li>
-                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-	<!-- Edit Modal HTML -->
-	<div id="addEmployeeModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form>
-					<div class="modal-header">						
-						<h4 class="modal-title">Add Employee</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+
+				<td>
+
+					<a  href="#editEmployeeModal"     (click)="translate(c)" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xe8f4;</i></a>
+					<a href="#exampleModalScrollable"  (click)="translate(c)" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+					<a (click)="deleteContact(c.id)" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+				</td>
+			</tr>
+
+
+			</tbody>
+		</table>
+		<div class="clearfix">
+			<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+			<ul class="pagination">
+				<li class="page-item disabled"><a href="#">Previous</a></li>
+				<li class="page-item"><a href="#" class="page-link">1</a></li>
+
+				<li class="page-item"><a href="#" class="page-link">Next</a></li>
+			</ul>
+		</div>
+	</div>
+
+<!-- Edit Modal HTML -->
+<div id="addEmployeeModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form>
+				<div class="modal-header">
+					<h4 class="modal-title">Add Employee</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label>Name</label>
+						<input type="text" class="form-control" required >
 					</div>
-					<div class="modal-body">					
-						<div class="form-group">
-							<label>Name</label>
-							<input type="text" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Email</label>
-							<input type="email" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Address</label>
-							<textarea class="form-control" required></textarea>
-						</div>
-						<div class="form-group">
-							<label>Phone</label>
-							<input type="text" class="form-control" required>
-						</div>					
+					<div class="form-group">
+						<label>Email</label>
+						<input type="email" class="form-control" required>
 					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-success" value="Add">
+					<div class="form-group">
+						<label>Address</label>
+						<textarea class="form-control" required></textarea>
 					</div>
+					<div class="form-group">
+						<label>Phone</label>
+						<input type="text" class="form-control" required>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-success" value="Add">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-scrollable" role="document">
+		<div class="modal-content">
+			<div class="modal-header" style="background-color: rgb(20, 91, 161);font-family: garamond;color: white;">
+				<h4 class="modal-title w-100" id="myModalLabels"> <i class="material-icons">&#xe7fe;</i> Modifier Employé</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form #controle="ngForm" >
+				<div class="md-form md-outline">
+					<input mdbInput  name="editId" type="text" id="editId" class="form-control" [(ngModel)]="Employe.id"
+						   required
+						   disabled
+						   #editId="ngModel"
+						   [ngClass]="{'is-invalid':editId.errors && editId.touched}"
+					>
+					<label for="editNom">N° Employé</label>
+					<div [hidden]="!editId.errors?.required" class="invalid-feedback" >
+						le N° est obligatoir
+
+					</div>
+				</div>
+				<div class="md-form md-outline">
+					<input mdbInput  name="editNom" type="text" id="editNom" class="form-control" [(ngModel)]="Employe.nom"
+						   required
+						   #editNom="ngModel"
+						   [ngClass]="{'is-invalid':editNom.errors && editNom.touched}"
+					>
+					<label for="editNom">Nom</label>
+					<div [hidden]="!editNom.errors?.required" class="invalid-feedback" >
+						le Nom est obligatoir
+
+					</div>
+				</div>
+				<div class="md-form md-outline">
+					<input mdbInput  name="editPrenom" type="email" id="editPrenom" class="form-control" [(ngModel)]="Employe.prenom"
+						   required
+						   #editPrenom="ngModel"
+						   [ngClass]="{'is-invalid':editPrenom.errors && editPrenom.touched}"
+					>
+					<label for="editNom">Prénom</label>
+					<div [hidden]="!editPrenom.errors?.required" class="invalid-feedback" >
+						le Prénom est obligatoir
+
+					</div>
+				</div>
+				<div class="md-form md-outline">
+					<input mdbInput  name="editdateN" type="date" id="editdateN" class="form-control" [(ngModel)]="Employe.dateNaissance"
+						   required
+						   #editdateN="ngModel"
+						   [ngClass]="{'is-invalid':editdateN.errors && editdateN.touched}"
+					>
+					<label for="editdateN"></label>
+					<div [hidden]="!editdateN.errors?.required" class="invalid-feedback" >
+						la date de Né est obligatoir
+
+					</div>
+				</div>
+
+				<div class="md-form md-outline">
+					<input mdbInput  name="edit_lienN" type="text" id="edit_lienN" class="form-control" [(ngModel)]="Employe.lieuN"
+						   required
+						   #edit_lienN="ngModel"
+						   [ngClass]="{'is-invalid':edit_lienN.errors && edit_lienN.touched}"
+					>
+					<label for="edit_lienN">Lieu Né</label>
+					<div [hidden]="!edit_lienN.errors?.required" class="invalid-feedback" >
+
+					</div>
+				</div>
+				<div class="md-form md-outline">
+					<input mdbInput  name="editAdresse" type="text" id="editAdresse" class="form-control" [(ngModel)]="Employe.adresse"
+						   required
+						   #editAdresse="ngModel"
+						   [ngClass]="{'is-invalid':editAdresse.errors && editAdresse.touched}"
+					>
+					<label for="editAdresse">Adresse</label>
+					<div [hidden]="!editAdresse.errors?.required" class="invalid-feedback" >
+
+					</div>
+				</div>
+				<div class="md-form md-outline">
+					<input mdbInput  name="edit_tel" type="text" id="edit_tel" class="form-control" [(ngModel)]="Employe.tel"
+						   required
+						   #edit_tel="ngModel"
+						   [ngClass]="{'is-invalid':edit_tel.errors && edit_tel.touched}"
+					>
+					<label for="edit_tel">Tél</label>
+					<div [hidden]="!edit_tel.errors?.required" class="invalid-feedback" >
+
+					</div>
+				</div>
+
+				<div class="md-form md-outline">
+
+					<select  name="editCategorie" id="editCategorie" [(ngModel)]="Employe.categorie" class="browser-default custom-select">
+						<option selected>{{Employe.categorie}}</option>
+						<option *ngFor="let cat of Catgorie"> {{cat.name}}</option>
+					</select>
+
+				</div>
+
+				<select  name="editFonction" id="editFonction" [(ngModel)]="Employe.fonction" class="browser-default custom-select">
+					<option selected>{{Employe.fonction}}</option>
+					<option *ngFor="let f of fonctions"> {{f.name}}</option>
+				</select>
+
+					<div class="md-form md-outline">
+					<input mdbInput  name="edit_calification" type="text" id="edit_calification" class="form-control" [(ngModel)]="Employe.calification"
+						   required
+						   #edit_calification="ngModel"
+						   [ngClass]="{'is-invalid':edit_calification.errors && edit_calification.touched}"
+					>
+					<label for="edit_tel">Calification</label>
+					<div [hidden]="!edit_calification.errors?.required" class="invalid-feedback" >
+
+					</div>
+				</div>
+					<div class="md-form md-outline">
+						<input mdbInput  name="edit_decision" type="text" id="edit_decision" class="form-control" [(ngModel)]="Employe.decision"
+							   required
+							   #edit_decision="ngModel"
+							   [ngClass]="{'is-invalid':edit_decision.errors && edit_decision.touched}"
+						>
+						<label for="edit_decision">Décision</label>
+						<div [hidden]="!edit_decision.errors?.required" class="invalid-feedback" >
+
+						</div>
+					</div>
+
+					<select  name="editwilaya" id="editwilaya" [(ngModel)]="Employe.wilaya" class="browser-default custom-select">
+						<option selected>{{Employe.wilaya}}</option>
+						<option *ngFor="let w of wilaya"> {{w.name}}</option>
+					</select>
+					<div class="md-form md-outline">
+
+						<select  name="editdaira" id="editdaira" [(ngModel)]="Employe.daira" class="browser-default custom-select">
+							<option selected>{{Employe.daira}}</option>
+							<option *ngFor="let d of daira"> {{d.name}}</option>
+						</select>
+					</div>
+					<select  name="editcomune" id="editcomune" [(ngModel)]="Employe.commune" class="browser-default custom-select">
+						<option selected>{{Employe.commune}}</option>
+						<option *ngFor="let c of Comune"> {{c.name}}</option>
+					</select>
+
+
+
+
 				</form>
+			</div>
+
+			<div class="modal-footer" style="font-family: Garamond;background-color: white;justify-items: left">
+                <button class="btn btn-success" (click)="updateEmploye()" [disabled]="!controle.valid" >Enregistrer </button>
+				<button class="btn btn-danger"  data-dismiss="modal">Annuler </button>
+
 			</div>
 		</div>
 	</div>
-	<!-- Edit Modal HTML -->
-	<div id="editEmployeeModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form>
-					<div class="modal-header">						
-						<h4 class="modal-title">Edit Employee</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">					
-						<div class="form-group">
-							<label>Name</label>
-							<input type="text" class="form-control" required>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Delete Modal HTML -->
+<div id="deleteEmployeeModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form>
+				<div class="modal-header">
+					<h4 class="modal-title">Delete Employee</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure you want to delete these Records?</p>
+					<p class="text-warning"><small>This action cannot be undone.</small></p>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-danger" value="Delete">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="modal fade" id="addModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-scrollable" role="document">
+		<div class="modal-content">
+			<div class="modal-header" style="background-color: rgb(20, 91, 161);font-family: garamond;color: white;">
+				<h4 class="modal-title w-100" id="myModelTitle"> <i class="material-icons">&#xe7fe;</i> Nouveau Employé</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form #controle="ngForm" >
+
+					<div class="md-form md-outline">
+						<input mdbInput  name="Nom" type="text" id="Nom" class="form-control" [(ngModel)]="Employe.nom"
+							   required
+							   #Nom="ngModel"
+							   [ngClass]="{'is-invalid':Nom.errors && Nom.touched}"
+						>
+						<label for="Nom">Nom</label>
+						<div [hidden]="!Nom.errors?.required" class="invalid-feedback" >
+							le Nom est obligatoir
+
 						</div>
-						<div class="form-group">
-							<label>Email</label>
-							<input type="email" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Address</label>
-							<textarea class="form-control" required></textarea>
-						</div>
-						<div class="form-group">
-							<label>Phone</label>
-							<input type="text" class="form-control" required>
-						</div>					
 					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-info" value="Save">
+					<div class="md-form md-outline">
+						<input mdbInput  name="Prenom" type="email" id="Prenom" class="form-control" [(ngModel)]="Employe.prenom"
+							   required
+							   #Prenom="ngModel"
+							   [ngClass]="{'is-invalid':Prenom.errors && Prenom.touched}"
+						>
+						<label for="Nom">Prénom</label>
+						<div [hidden]="!Prenom.errors?.required" class="invalid-feedback" >
+							le Prénom est obligatoir
+
+						</div>
 					</div>
+					<div class="md-form md-outline">
+						<input mdbInput  name="dateN" type="date" dataformatas="dd-mm-yyyy"  id="dateN" class="form-control" [(ngModel)]="Employe.dateNaissance"
+							   required
+							   #dateN="ngModel"
+							   [ngClass]="{'is-invalid':dateN.errors && dateN.touched}"
+						>
+						<label for="dateN"></label>
+						<div [hidden]="!dateN.errors?.required" class="invalid-feedback" >
+							la date de Né est obligatoir
+
+						</div>
+					</div>
+
+
+
+
+					<div class="md-form md-outline">
+						<input mdbInput  name="_lienN" type="text" id="_lienN" class="form-control" [(ngModel)]="Employe.lieuN"
+							   required
+							   #_lienN="ngModel"
+							   [ngClass]="{'is-invalid':_lienN.errors && _lienN.touched}"
+						>
+						<label for="_lienN">Lieu Né</label>
+						<div [hidden]="!_lienN.errors?.required" class="invalid-feedback" >
+
+						</div>
+					</div>
+					<div class="md-form md-outline">
+						<input mdbInput  name="Adresse" type="text" id="Adresse" class="form-control" [(ngModel)]="Employe.adresse"
+							   required
+							   #Adresse="ngModel"
+							   [ngClass]="{'is-invalid':Adresse.errors && Adresse.touched}"
+						>
+						<label for="Adresse">Adresse</label>
+						<div [hidden]="!Adresse.errors?.required" class="invalid-feedback" >
+
+						</div>
+					</div>
+					<div class="md-form md-outline">
+						<input mdbInput  name="_tel" type="text" id="_tel" class="form-control" [(ngModel)]="Employe.tel"
+							   required
+							   #_tel="ngModel"
+							   [ngClass]="{'is-invalid':_tel.errors && _tel.touched}"
+						>
+						<label for="_tel">Tél</label>
+						<div [hidden]="!_tel.errors?.required" class="invalid-feedback" >
+
+						</div>
+					</div>
+
+					<div class="md-form md-outline">
+
+						<select  name="Categorie" id="Categorie" [(ngModel)]="Employe.categorie" class="browser-default custom-select">
+							<option value="" disabled selected hidden>Catégorie</option>
+							<option *ngFor="let cat of Catgorie"> {{cat.name}}</option>
+						</select>
+
+					</div>
+					<div class="md-form md-outline">
+
+					<select  name="Fonction" id="Fonction" [(ngModel)]="Employe.fonction" class="browser-default custom-select">
+						<option value="" disabled selected hidden>Fonction</option>
+						<option *ngFor="let f of fonctions"> {{f.name}}</option>
+					</select>
+					</div>
+
+					<div class="md-form md-outline">
+						<input mdbInput  name="_calification" type="text" id="_calification" class="form-control" [(ngModel)]="Employe.calification"
+							   required
+							   #_calification="ngModel"
+							   [ngClass]="{'is-invalid':_calification.errors && _calification.touched}"
+						>
+						<label for="_tel">Calification</label>
+						<div [hidden]="!_calification.errors?.required" class="invalid-feedback" >
+
+						</div>
+					</div>
+					<div class="md-form md-outline">
+						<input mdbInput  name="_decision" type="text" id="_decision" class="form-control" [(ngModel)]="Employe.decision"
+							   required
+							   #_decision="ngModel"
+							   [ngClass]="{'is-invalid':_decision.errors && _decision.touched}"
+						>
+						<label for="_decision">Décision</label>
+						<div [hidden]="!_decision.errors?.required" class="invalid-feedback" >
+
+						</div>
+					</div>
+					<div class="md-form md-outline">
+
+					<select  name="wilaya" id="wilaya" [(ngModel)]="Employe.wilaya" class="browser-default custom-select">
+						<option value="" disabled selected hidden>Wilaya</option>
+						<option *ngFor="let w of wilaya"> {{w.name}}</option>
+					</select>
+
+					</div>
+					<div class="md-form md-outline">
+
+						<select  name="daira" id="daira" [(ngModel)]="Employe.daira" class="browser-default custom-select">
+							<option value="" disabled selected hidden>Daira</option>
+							<option *ngFor="let d of daira"> {{d.name}}</option>
+						</select>
+
+					</div>
+					<div class="md-form md-outline">
+					<select  name="comune" id="comune" [(ngModel)]="Employe.commune" class="browser-default custom-select">
+						<option value="" disabled selected hidden>Commune</option>
+						<option *ngFor="let c of Comune"> {{c.name}}</option>
+					</select>
+
+					</div>
+
+
+
 				</form>
+			</div>
+
+			<div class="modal-footer" style="font-family: Garamond;background-color: white">
+
+
+					<input  type="submit" class="btn btn-success" (click)="saveEmploye(controle.value)" [disabled]="!controle.valid"  value="Enregistrer ">
+					<input  type="button" class="btn btn-danger" data-dismiss="modal" value="Annuler">
 			</div>
 		</div>
 	</div>
-	<!-- Delete Modal HTML -->
-	<div id="deleteEmployeeModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form>
-					<div class="modal-header">						
-						<h4 class="modal-title">Delete Employee</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">					
-						<p>Are you sure you want to delete these Records?</p>
-						<p class="text-warning"><small>This action cannot be undone.</small></p>
-					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-danger" value="Delete">
-					</div>
-				</form>
-			</div>
-		</div>
-  </div>
-  
+</div>
 
 
-  
-
-  <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header" style="background-color: rgb(20, 91, 161);font-family: garamond;color: white;">
-           <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
-            <span aria-hidden="true">×</span>
-          </button>
-          <h4 class="modal-title w-100" id="myModalLabel"> <i class="material-icons">&#xe7fe;</i> Nouveaux Employé</h4>
-        </div>
-        <div class="modal-body" >
-            <div  class="control-group">
-                <div class="md-form md-outline">
-                  <input mdbInput  name="nom" type="email" id="form1" class="form-control" [(ngModel)]="contact.nom"
-						 required
-						 #contactNom="ngModel"
-				  [ngClass]="{'is-invalid':contactNom.errors && contactNom.touched}"
-				  >
-                  <label for="form1">Nom</label>
-				<div [hidden]="!contactNom.errors?.required" class="invalid-feedback" >
-					le Nom est obligatoir
-
-				</div>
 
 
-				</div>
 
-                <div class="md-form md-outline">
-                  <input mdbInput  name="prenom" type="email" id="form2" class="form-control" [(ngModel)]="contact.prenom" #input="ngModel" >
-                  <label for="form2">Prénom</label>
-                </div>
-                <div class="md-form md-outline">
-                  <input mdbInput  name="email" type="email" id="form3" class="form-control" [(ngModel)]="contact.dateNaissance" #input="ngModel" >
-                  <label for="form3">Date Néssance</label>
-                </div>
-                <div class="md-form md-outline">
-                  <input mdbInput  name="email" type="tel" id="form4" class="form-control" [(ngModel)]="contact.email" #input="ngModel"  >
-                  <label for="form4">Email</label>
-                </div>
-				<div   class="md-form md-outline">
-					<input mdbInput  name="email" type="tel" id="form5" class="form-control" [(ngModel)]="contact.tel" #input="ngModel"  >
-					<label for="form5">Tél</label>
-				</div>
-          </div>
-        </div>
-		  <div class="modal-footer justify-content-lg-start" style="background-color:white;font-family:'Varela Round', sans-serif;">
-			  <button type="submit" class="btn btn-primary" (click)="saveContact()" style="background-color: rgb(20, 91, 161);font-size: 18px;font-family: Garamond" >Enregistrer    </button>
-
-		  </div>
-
-
-      </div>
-    </div>
-  </div>
-<!-- Default form login 
-<form class="text-center border border-light p-5" action="#!">
-
-    
-
-</form>
-Default form login -->
 
 
 

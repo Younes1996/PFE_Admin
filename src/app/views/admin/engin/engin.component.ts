@@ -1,27 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-import {ContactsService} from '../services/contacts.service';
+import {ClientsService} from '../services/clients.service';
 @Component({
   selector: 'app-engin',
   templateUrl: './engin.component.html',
   styleUrls: ['./engin.component.css']
 })
 export class EnginComponent implements OnInit {
-
+  client='../client'
+  engin='../engin'
+  personnel='../personnel'
   // @ts-ignore
-  constructor(private contactservice:ContactsService,
+  constructor(private contactservice:ClientsService,
   //private router:Router
 
   ) { }
+
+  sele:any
 contacts=[];
   ngOnInit(): void {
-    this.contactservice.getEmployeesList()
-        .subscribe(data=>this.contacts=data);
+
+  }
+  edit(){
+    this.sele="eeeeee"
   }
   contact={nom:"",prenom:"",email:"",dateNaissance:"",tel:""};
 
   saveEngin(){
-    this.contactservice.createEmployee(this.contact)
-        .subscribe(data => console.log(data), error => console.log(error));
+    console.log('sssssssssss')
+
   }
 
 }

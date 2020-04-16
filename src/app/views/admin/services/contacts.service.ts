@@ -9,14 +9,28 @@ import {Observable} from 'rxjs';
 export class ContactsService {
 
   constructor(private http:HttpClient){}
-  private baseUrl = 'http://localhost:8080/contact';
+  private baseUrl = "http://localhost:8080/employes";
 
+    public getEmpploye():Observable<Object>
+    {
+      return this.http.get("http://localhost:8080/listemployes/");
+    }
 
-  getEmployeesList(): Observable<any> {
-    return this.http.get(`${this.baseUrl}`);
-  }
   createEmployee(employee: Object): Observable<Object> {
     return this.http.post(`${this.baseUrl}`, employee);
+  }
+
+  deleteContact(id:number){
+    return this.http.delete(this.baseUrl+"/"+id);
+  }
+
+  getEmploye(page:number,size:number){
+
+      return this.http.get("http://localhost:8080/employes?page="+page+"&size="+size);
+
+  }
+  updateEmployee(employee: Object,id:any): Observable<Object> {
+    return this.http.put(`${this.baseUrl+"/"+id}`, employee);
   }
 
 }
