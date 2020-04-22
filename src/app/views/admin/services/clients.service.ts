@@ -33,8 +33,14 @@ export class ClientsService {
 
   }
 
+getClient_By_Page(size:number,page:number){
 
-
+  return this.http.get(this.baseUrl+"s?page="+page+"&size="+size);
+}
+  public Filter_Client(nom:String):Observable<Object>
+  {
+    return this.http.get("http://localhost:8080/clients/search/findByNomContaining?nom="+nom);
+  }
 
 }
 

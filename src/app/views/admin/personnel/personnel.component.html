@@ -5,16 +5,25 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<br>
 
-	<div class="table-wrapper">
+
+	<div class="table-wrapper" datasrc="datasource">
 		<div class="table-title">
 			<div class="row">
-				<div class="col-sm-6">
-					<h2>Gestions des <b>Employees</b></h2>
+				<div class="col-sm-6" style="font-family: Garamond;font-size: 26px">
+					<h2>Gestions des <b>Employés</b></h2>
 				</div>
-				<div class="col-sm-6">
-					<a href="#addModel" class="h" data-toggle="modal"><i class="material-icons">&#xe7fe;</i> <span></span></a>
+				<div class="col-sm-2" >
+
+					<input style="width: 310px" (keyup)="filter()" [(ngModel)]="datasource" class="form-control my-0 py-1" type="text" placeholder="Rechercher" aria-label="Search">
+				</div>
+				<div class="col-sm-2">
+					<div class="input-group-prepend">
+						<span style="height: 38px;margin-left: 70px" class="input-group-text pink lighten-3" id="basic-text1"><i class="fas fa-search text-white" aria-hidden="true"></i></span>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<a href="#addModel" class="h" data-toggle="modal"><i class="fas fa-plus fa-8x "></i> <span></span></a>
 
 				</div>
 			</div>
@@ -89,41 +98,6 @@
 		</div>
 	</div>
 
-<!-- Edit Modal HTML -->
-<div id="addEmployeeModal" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<form>
-				<div class="modal-header">
-					<h4 class="modal-title">Add Employee</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				</div>
-				<div class="modal-body">
-					<div class="form-group">
-						<label>Name</label>
-						<input type="text" class="form-control" required >
-					</div>
-					<div class="form-group">
-						<label>Email</label>
-						<input type="email" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label>Address</label>
-						<textarea class="form-control" required></textarea>
-					</div>
-					<div class="form-group">
-						<label>Phone</label>
-						<input type="text" class="form-control" required>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-success" value="Add">
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
 
 
 
@@ -499,10 +473,9 @@
 			</div>
 
 			<div class="modal-footer" style="font-family: Garamond;background-color: white">
+                <button class="btn btn-primary" type="submit" (click)="saveEmploye(controle.value)" [disabled]="!controle.valid">Enregistrer</button>
+				<button class="btn btn-danger"  data-dismiss="modal">Annuler </button>
 
-
-					<input  type="submit" class="btn btn-success" (click)="saveEmploye(controle.value)" [disabled]="!controle.valid"  value="Enregistrer ">
-					<input  type="button" class="btn btn-danger" data-dismiss="modal" value="Annuler">
 			</div>
 		</div>
 	</div>

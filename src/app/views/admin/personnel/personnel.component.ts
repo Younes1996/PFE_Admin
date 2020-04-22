@@ -7,7 +7,6 @@ import Swal from 'sweetalert2';
   styleUrls: ['./personnel.component.css']
 })
 export class PersonnelComponent implements OnInit {
-
   constructor(
       private contactservice:ContactsService,
 
@@ -16,10 +15,12 @@ export class PersonnelComponent implements OnInit {
   public size:number=5;
   public currentPage:number=0;
 
-  public contacts:any;
-  ngOnInit(): void {
+  public contacts=[];
+    datasource:string
+
+    ngOnInit(): void {
          this.contactservice.getEmpploye()
-        .subscribe(data=>this.contacts=data);
+        .subscribe((data:any)=>this.contacts=data);
   }
   Catgorie=[{id:1,name:'Gérant'},{id:2,name:'Chaufeur'},{id:3,name:'Mécanicien'}]
   fonctions=[{id:1,name:'C-service'},{id:2,name:'Comtable'},{id:3,name:'S-directeur'}]
@@ -142,7 +143,7 @@ export class PersonnelComponent implements OnInit {
 
   public getEmploye(){
     this.contactservice.getEmpploye()
-        .subscribe(data=>this.contacts=data);
+        .subscribe((data:any)=>this.contacts=data);
 
   }
 
@@ -153,7 +154,7 @@ export class PersonnelComponent implements OnInit {
 
   onGetEmploye(){
     this.contactservice.getEmploye(this.currentPage,this.size )
-        .subscribe(data=>{
+        .subscribe((data:any)=>{
           this.contacts=data;
         },err=>{
           console.log(err);
@@ -199,4 +200,11 @@ export class PersonnelComponent implements OnInit {
         }
 
 
+    filter() {
+     this.contactservice.Filter_Emolye(this.datasource).subscribe(
+
+         (data:any) =>this.contacts=data._embedded.employes
+     )
+
+    }
 }

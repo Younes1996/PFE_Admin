@@ -10,6 +10,7 @@ import { Dashboard1Component } from './views/dashboards/dashboard1/dashboard1.co
 import { EnginComponent } from './views/admin/engin/engin.component';
 import { ClientComponent } from './views/admin/client/client.component';
 import { PersonnelComponent } from './views/admin/personnel/personnel.component';
+import {CommandeComponent} from './views/admin/commande/commande/commande.component';
 
 
 const routes: Route[] = [
@@ -29,6 +30,11 @@ const routes: Route[] = [
     { path: 'personnel', component: PersonnelComponent },
   ]
 },
+  { path: 'admin', children:
+        [
+          { path: 'commande', component:CommandeComponent},
+        ]
+  },
 { path: 'admin', children:
 [
   { path: 'engin', component: EnginComponent },

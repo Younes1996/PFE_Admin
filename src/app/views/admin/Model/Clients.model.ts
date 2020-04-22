@@ -15,4 +15,19 @@ export class Clients {
     public commune:string;
 
 
+    constructor() {
+        this.id = "";
+        this.nom = "";
+        this.prenom = "";
+        this.adresse = "";
+        this.tel = "";
+        this.carte_n = "";
+        this.date_d = "";
+        this.daira_d = "";
+        this.carteF = "";
+        this.carteF_d = "";
+        this.wilaya = "Wilaya";
+        this.daira = "Daira";
+        this.commune = "Commune";
+    }
 }

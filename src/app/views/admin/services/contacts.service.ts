@@ -33,4 +33,10 @@ export class ContactsService {
     return this.http.put(`${this.baseUrl+"/"+id}`, employee);
   }
 
+
+  public Filter_Emolye(nom:String):Observable<Object>
+  {
+    return this.http.get("http://localhost:8080/employes/search/findByNomContaining?nom="+nom);
+  }
+
 }

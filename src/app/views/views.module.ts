@@ -22,6 +22,7 @@ import { NavComponent } from './nav/nav.component';
 import { EnginComponent } from './admin/engin/engin.component';
 import { ClientComponent } from './admin/client/client.component';
 import { PersonnelComponent } from './admin/personnel/personnel.component';
+import { CommandeComponent } from './admin/commande/commande/commande.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { PersonnelComponent } from './admin/personnel/personnel.component';
     EnginComponent,
     ClientComponent,
     PersonnelComponent,
+    CommandeComponent,
 
   ],
   exports: [

@@ -14,17 +14,22 @@ import {Clients} from '../Model/Clients.model';
 })
 export class ClientComponent implements OnInit {
 
-
+    public size:number=5;
+    public currentpage:number=0;
+    public totalPages:number
+    public pages:Array<number>
+    public isMax:boolean
+    public datasource:string
     cl: Clients = new Clients();
-    list_Client:any
+    list_Client=[]
     constructor(
        private clientService: ClientsService,
 
     ) {}
 
     ngOnInit(): void {
-        this.clientService.getClient()
-            .subscribe(data=>this.list_Client=data);
+       this.getClient()
+
     }
 
 
@@ -99,8 +104,16 @@ export class ClientComponent implements OnInit {
 
 
     public getClient(){
-        this.clientService.getClient()
-            .subscribe(data=>this.list_Client=data);
+        this.clientService.getClient_By_Page(this.size,this.currentpage).subscribe(
+
+            (data:any)=>{
+                this.totalPages=data['page'].totalPages
+                this.pages=new Array<number>(this.totalPages)
+                this.list_Client=data._embedded.clients
+
+            }
+
+        )
 
     }
 
@@ -139,5 +152,39 @@ export class ClientComponent implements OnInit {
 
     get_Info(c: any) {
         this.cl=c;
+    }
+
+    Onget_Client(i: number) {
+        this.currentpage=i;
+        this.getClient()
+
+    }
+
+    get_Next_Page() {
+        this.currentpage=this.currentpage+1
+        this.getClient()
+
+        if(this.currentpage==this.totalPages)
+        {
+            this.isMax==false
+        }
+
+    }
+
+    get_Previouss_Page() {
+        this.currentpage=this.currentpage-1
+        this.getClient()
+
+
+
+    }
+
+    filter() {
+        this.clientService.Filter_Client(this.datasource).subscribe(
+
+            (data:any) =>this.list_Client=data._embedded.clients
+        )
+
+
     }
 }
