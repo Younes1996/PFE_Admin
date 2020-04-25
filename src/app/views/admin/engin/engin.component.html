@@ -28,13 +28,12 @@
 							</span>
 			</th>
 
-			<th>N° </th>
-			<th>Nom</th>
-			<th>Prénom</th>
-			<th>Adresse</th>
-			<th>Tél</th>
-			<th>Wilaya</th>
-			<th>Daira</th>
+			<th>Code-Mat </th>
+			<th>Marque</th>
+			<th>Type Mat</th>
+			<th>Etats</th>
+			<th>Fin Aquis</th>
+			<th>Chauffeur</th>
 			<th>Action</th>
 
 
@@ -52,6 +51,14 @@
 								<label for="checkbox1"></label>
 							</span>
 			</td>
+			<td>{{c.codeMat}}</td>
+			<td>{{c.marque}}</td>
+			<td>{{c.typeMat}}</td>
+			<td>{{c.etats}}</td>
+			<td>{{c.finAqui}}</td>
+			<td>{{c.chaufeur}}</td>
+
+
 
 
 
@@ -63,18 +70,18 @@
 				<a href="#" (click)="get_Info(c)"   class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 				<a  class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 			</td>
+
 		</tr>
 
 
 		</tbody>
 	</table>
-	<div class="clearfix">
-		<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+	<div  *ngIf="pages">
 		<ul class="pagination">
-			<li class="page-item disabled"><a href="#">Previous</a></li>
-			<li class="page-item"><a href="#" class="page-link">1</a></li>
+			<li class="page-item "><a (click)="get_Previouss_Page()" class="page-link">Previous</a></li>
+			<li class="page-item"  *ngFor="let p of  pages;let i=index"><a class="page-link"(click)="Onget_Engin(i)" >{{i}}</a></li>
 
-			<li class="page-item"><a href="#" class="page-link">Next</a></li>
+			<li class="page-item" > <a  (click)="get_Next_Page()"  class="page-link"   >Next</a></li>
 		</ul>
 	</div>
 </div>
@@ -94,7 +101,7 @@
 			<div class="modal-body" >  <!--  Start Body                 !-->
 				<form #client="ngForm" >
 					<div class="md-form md-outline">
-						<input mdbInput  name="codeMat" type="text" id="codeMat" class="form-control" [(ngModel)]="engin.code_mat"
+						<input mdbInput  name="codeMat" type="text" id="codeMat" class="form-control" [(ngModel)]="engin.codeMat"
 							   required
 							   #codeMat="ngModel"
 							   [ngClass]="{'is-invalid':codeMat.errors && codeMat.touched}"
@@ -107,8 +114,8 @@
 					</div>
 					<div class="md-form md-outline">
 
-						<select (click)="getMarques()" name="type_mat" id="type_mat" [(ngModel)]="engin.type_mat" class="browser-default custom-select">
-							<option selected>{{engin.type_mat}}</option>
+						<select (click)="getMarques()" name="type_mat" id="type_mat" [(ngModel)]="engin.typeMat" class="browser-default custom-select">
+							<option selected>{{engin.typeMat}}</option>
 							<option *ngFor="let t of TypeMat">{{t.name}}</option>
 						</select>
 					</div>
@@ -117,7 +124,7 @@
 
 						<div class="row col-lg-12">
 							<div class="com-lg-10">
-								<select  name="marque" id="marque" [(ngModel)]="engin.marque" class="browser-default custom-select">
+								<select  name="marque" id="marque"  class="browser-default custom-select" [(ngModel)]="engin.marque">
 									<option selected>{{engin.marque}}</option>
 									<option *ngFor="let m of list_marque">{{m.nom}}</option>
 								</select>
@@ -125,7 +132,7 @@
 
 
 							<div class="col-lg-2">
-								<a href="#exampleModal" class="h" data-toggle="modal"><mdb-icon fas icon="plus"></mdb-icon> <span></span></a>
+								<a href="#exampleModal" class="h" data-toggle="modal"><i class="fas fa-plus fa-2x "></i>  <span></span></a>
 
 							</div>
 
@@ -139,7 +146,7 @@
 
 
 					<div class="md-form md-outline">
-						<input mdbInput  name="Nserie" type="text" id="Nserie" class="form-control" [(ngModel)]="engin.N_serie"
+						<input mdbInput  name="Nserie" type="text" id="Nserie" class="form-control" [(ngModel)]="engin.n_serie"
 							   required
 							   #Nserie="ngModel"
 							   [ngClass]="{'is-invalid':Nserie.errors && Nserie.touched}"
@@ -151,30 +158,66 @@
 					</div>
 
 					<div class="md-form md-outline">
-						<input mdbInput  name="carte" type="text" id="carte" class="form-control" [(ngModel)]="engin.immatriculation"
+						<input mdbInput  name="matricule" type="text" id="matricule" class="form-control" [(ngModel)]="engin.matricule"
 							   required
-							   #carte="ngModel"
-							   [ngClass]="{'is-invalid':carte.errors && carte.touched}"
+							   #matricule="ngModel"
+							   [ngClass]="{'is-invalid':matricule.errors && matricule.touched}"
 						>
-						<label for="carte">Immatriculation</label>
-						<div [hidden]="!carte.errors?.required" class="invalid-feedback" >
+						<label for="matricule">Immatriculation</label>
+						<div [hidden]="!matricule.errors?.required" class="invalid-feedback" >
 							le N° est obligatoir
 
 						</div>
 					</div>
 
+					<div class="md-form md-outline">
+						<input mdbInput  name="valAqui" type="number" id="valAqui" class="form-control" [(ngModel)]="engin.valAqui"
+							   required
+							   #valAqui="ngModel"
+							   [ngClass]="{'is-invalid':valAqui.errors && valAqui.touched}"
+						>
+						<label for="valAqui">Valeur d'aquis</label>
+						<div [hidden]="!valAqui.errors?.required" class="invalid-feedback" >
 
+						</div>
+					</div>
+
+					<div class="md-form ">
+						<input type="date" name="dateAquis" id="dateAquis" class="form-control" [(ngModel)]="engin.dateAqui"
+
+							   mdbInput>
+						<label for="dateAquis">date d'aquis</label>
+					</div>
+					<div class="md-form md-outline">
+						<input mdbInput  name="duree" type="number" id="duree" class="form-control" [(ngModel)]="engin.duree"
+							   required
+							   #duree="ngModel"
+							   [ngClass]="{'is-invalid':duree.errors && duree.touched}"
+						>
+						<label for="duree">duree</label>
+						<div [hidden]="!duree.errors?.required" class="invalid-feedback" >
+
+						</div>
+					</div>
+					<div class="md-form">
+						<input type="date" name="finAquis" id="finAquis" class="form-control" [(ngModel)]="engin.finAqui"
+
+							   mdbInput>
+						<label for="finAquis">Fin aquis</label>
+					</div>
 
 					<div class="md-form md-outline">
 
 						<select  name="etats" id="etats" [(ngModel)]="engin.etats" class="browser-default custom-select">
 							<option selected>{{engin.etats}}</option>
+							<option *ngFor="let e of Etats">{{e.name}}</option>
 						</select>
 					</div>
 					<div class="md-form md-outline">
 
-						<select  name="operation" id="operation" [(ngModel)]="engin.opertaion" class="browser-default custom-select">
-							<option selected>{{engin.opertaion}}</option>
+						<select  name="operation" id="operation" [(ngModel)]="engin.operation" class="browser-default custom-select">
+							<option selected>{{engin.operation}}</option>
+							<option *ngFor="let o of operation">{{o.name}}</option>
 						</select>
 					</div>
 					<div class="md-form md-outline" *ngIf="employes">
@@ -204,8 +247,8 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabelss">Ajouter Marque</h5>
+            <div class="modal-header" style="background-color: rgb(20, 91, 161);font-family: garamond;color: white;" >
+				<h4 class="modal-title" id="exampleModalLabelss">Ajouter Marque</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -230,7 +273,7 @@
 					<div class="md-form md-outline">
 
 						<select  name="type_mats" id="types"  class="browser-default custom-select" [(ngModel)]="marques.type">
-							<option value="" disabled selected hidden>{{marques.type}}</option>
+							<option selected>{{marques.type}}</option>
 							<option *ngFor="let t of TypeMat"> {{t.name}}</option>
 
 						</select>
@@ -238,9 +281,9 @@
 					</div>
 				</form>
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
+			<div class="modal-footer" style="background-color: white">
+                <button type="button" class="btn btn-primary" (click)="ajouterMarque()">Ajouter</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
 			</div>
 		</div>
 	</div>
@@ -278,7 +321,7 @@
 					<div class="md-form md-outline">
 
 						<select  name="type_mats" id="type"  class="browser-default custom-select" ngModel>
-							<option value="" disabled selected hidden>{{engin.type_mat}}</option>
+							<option value="" disabled selected hidden>{{engin.typeMat}}</option>
 							<option *ngFor="let t of TypeMat"> {{t.name}}</option>
 
 						</select>
