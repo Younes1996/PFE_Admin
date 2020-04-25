@@ -11,6 +11,9 @@ export class NavComponent implements OnInit {
   client='../client'
   engin='../engin'
   personnel='../personnel'
+  produit='../produit'
+  tarif='../tarif'
+
 
   ngOnInit(): void {
   }

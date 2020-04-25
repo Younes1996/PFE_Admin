@@ -44,7 +44,10 @@ export class EnginsService {
   {
     return this.http.post("http://localhost:8080/marque", f);
   }
+  getEngint_By_Page(size:number,page:number){
 
+    return this.http.get(this.baseUrl+"s?page="+page+"&size="+size);
+  }
 
 }
 //http://localhost:8080/employes/search/findByCategorie?nom=chaufeurs

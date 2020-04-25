@@ -224,16 +224,15 @@
                     <div class="md-form md-outline">
 
                         <select  name="edit_wilaya" id="edit_wilaya" [(ngModel)]="cl.wilaya" class="browser-default custom-select">
-                            <option value="" disabled selected hidden>{{cl.wilaya}}</option>
+                            <option   selected >{{cl.wilaya}}</option>
                             <option > Adrar</option>
                             <option > Alger </option>
                         </select>
                     </div>
-                    {{cl.daira}}
                     <div class="md-form md-outline">
 
                         <select  name="edit_daira" id="edit_daira" [(ngModel)]="cl.daira" class="browser-default custom-select">
-                            <option  disabled selected hidden>{{cl.daira}}</option>
+                            <option   selected >{{cl.daira}}</option>
                             <option > el eulma</option>
                             <option > Guelta  </option>
 
@@ -242,7 +241,7 @@
                     </div>
                     <div class="md-form md-outline">
                         <select  name="edit_comune" id="edit_comune"  class="browser-default custom-select" [(ngModel)]="cl.commune">
-                            <option  disabled selected hidden>{{cl.commune}}</option>
+                            <option   selected >{{cl.commune}}</option>
                             <option > Bazer sakhra</option>
                             <option > El Eulma </option>
 
@@ -386,7 +385,7 @@
                         <div class="md-form md-outline">
 
                             <select  name="wilaya" id="wilaya" [(ngModel)]="cl.wilaya" class="browser-default custom-select">
-                                <option value="" disabled selected hidden>Wilaya</option>
+                                <option   selected >Wilaya</option>
                                 <option > Adrar</option>
                                 <option > Alger </option>
                             </select>
@@ -395,7 +394,7 @@
                         <div class="md-form md-outline">
 
                             <select  name="daira" id="daira" [(ngModel)]="cl.daira" class="browser-default custom-select">
-                                <option value="" disabled selected hidden>Daira</option>
+                                <option  selected >Daira</option>
                                 <option > el eulma</option>
                                 <option > Guelta  </option>
 
@@ -404,7 +403,7 @@
                         </div>
                         <div class="md-form md-outline">
                             <select  name="comune" id="comune"  class="browser-default custom-select" [(ngModel)]="cl.commune">
-                                <option value="" disabled selected hidden>Commune</option>
+                                <option selected>Commune</option>
                                 <option > Bazer sakhra</option>
                                 <option > El Eulma </option>
 
@@ -431,4 +430,4 @@
 
 
 
-
+</div>

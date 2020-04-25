@@ -1,0 +1,250 @@
+<app-na></app-na>
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<br>
+
+<div class="table-wrapper">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-6" style="font-family: Garamond;font-size: 26px">
+                <h2>Gestions des <b>Produits</b></h2>
+            </div>
+            <div class="col-sm-2" >
+
+                <input style="width: 310px" (keyup)="filter()" [(ngModel)]="dataSource" class="form-control my-0 py-1" type="text" placeholder="Rechercher" aria-label="Search">
+            </div>
+            <div class="col-sm-2">
+                <div class="input-group-prepend">
+                    <span style="height: 38px;margin-left: 70px" class="input-group-text pink lighten-3" id="basic-text1"><i class="fas fa-search text-white" aria-hidden="true"></i></span>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <a href="#addProduct" class="h" data-toggle="modal"><i class="fas fa-plus fa-8x "></i> <span></span></a>
+
+            </div>
+        </div>
+    </div>
+    <table  class="table table-striped " >
+        <thead>
+        <tr>
+            <th>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="selectAll">
+								<label for="selectAll"></label>
+							</span>
+            </th>
+
+            <th>N° </th>
+            <th>Designation</th>
+            <th>Type de Produits</th>
+            <th>Référence</th>
+            <th>Action</th>
+
+
+
+
+        </tr>
+        </thead>
+        <tbody >
+
+
+        <tr *ngFor=" let c of listProduits " >
+            <td>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="checkbox1" name="options[]" value="1">
+								<label for="checkbox1"></label>
+							</span>
+            </td>
+            <td>{{c.id}}</td>
+            <td>{{c.design}}</td>
+            <td>{{c.typeProduit}}</td>
+            <td>{{c.ref}}</td>
+
+
+
+
+
+            <td>
+
+                <a  href="#editEmployeeModal"      class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xe8f4;</i></a>
+                <a href="#editProduct" (click)="get_Info(c)"   class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                <a (click)="delete_Produit(c.id)" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+            </td>
+        </tr>
+
+
+        </tbody>
+    </table>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="addProduct">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ajouter Produit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row col-lg-12">
+                    <div class="com-lg-10">
+                        <select  name="marque" id="marque"  class="browser-default custom-select" [(ngModel)]="produit.typeProduit">
+                            <option selected >Type de Produits</option>
+                            <option *ngFor="let m of typeProd">{{m.typeProduit}}</option>
+                        </select>
+                    </div>
+
+
+                    <div class="col-lg-2">
+                        <a href="#tproduit" class="h" data-toggle="modal"><i class="fas fa-plus fa-2x "></i>  <span></span></a>
+
+                    </div>
+
+                </div>
+
+                <div class="md-form md-outline">
+                    <input mdbInput  name="design" type="text" id="design" class="form-control" [(ngModel)]="produit.design"
+                           required
+                           #design="ngModel"
+                           [ngClass]="{'is-invalid':design.errors && design.touched}"
+                    >
+                    <label for="design">Désignation</label>
+                    <div [hidden]="!design.errors?.required" class="invalid-feedback" >
+                        la Désignation est obligatoire
+
+                    </div>
+                </div>
+                <div class="md-form md-outline">
+                    <input mdbInput  name="ref" type="text" id="ref" class="form-control" [(ngModel)]="produit.ref"
+                           required
+                           #ref="ngModel"
+                           [ngClass]="{'is-invalid':ref.errors && ref.touched}"
+                    >
+                    <label for="ref">Référence</label>
+                    <div [hidden]="!ref.errors?.required" class="invalid-feedback" >
+                        le Référence est obligatoir
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="ajouterProduit()">Ajouter</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="editProduct">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modifier Produit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="md-form md-outline">
+                    <input mdbInput  name="id" type="text" id="id" class="form-control" [(ngModel)]="produit.id"
+                           required
+                           placeholder="ID-Produit"
+                           disabled
+                           style="border-color: #03A9F4"
+                           #id="ngModel"
+                           [ngClass]="{'is-invalid':id.errors && id.touched}"
+                    >
+
+                </div>
+                <div class="row col-lg-12">
+                    <div class="com-lg-10">
+                        <select  name="edit_marque" id="edit_marque"  class="browser-default custom-select" [(ngModel)]="produit.typeProduit">
+                            <option selected >Type de Produits</option>
+                            <option *ngFor="let m of typeProd">{{m.typeProduit}}</option>
+                        </select>
+                    </div>
+
+
+                    <div class="col-lg-2">
+                        <a href="#exampleModal" class="h" data-toggle="modal"><i class="fas fa-plus fa-2x "></i>  <span></span></a>
+
+                    </div>
+
+                </div>
+
+                <div class="md-form md-outline">
+                    <input mdbInput  name="edit_design" type="text" id="edit_design" class="form-control" [(ngModel)]="produit.design"
+                           required
+                           #edit_design="ngModel"
+                           [ngClass]="{'is-invalid':edit_design.errors && edit_design.touched}"
+                    >
+                    <label for="edit_design">Désignation</label>
+                    <div [hidden]="!edit_design.errors?.required" class="invalid-feedback" >
+                        la Désignation est obligatoire
+
+                    </div>
+                </div>
+                <div class="md-form md-outline">
+                    <input mdbInput  name="edit_ref" type="text" id="edit_ref" class="form-control" [(ngModel)]="produit.ref"
+                           required
+                           #edit_ref="ngModel"
+                           [ngClass]="{'is-invalid':edit_ref.errors && edit_ref.touched}"
+                    >
+                    <label for="edit_ref">Référence</label>
+                    <div [hidden]="!edit_ref.errors?.required" class="invalid-feedback" >
+                        le Référence est obligatoir
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="updateProduit()">Métre a jour</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="tproduit">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ajouter T-Produits</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+               <form #typePr="ngForm">
+                   <div class="md-form md-outline">
+                       <input mdbInput  name="type" type="text" id="type" class="form-control" [(ngModel)]="produit.typeProduit"
+                              required
+                              #type="ngModel"
+                              [ngClass]="{'is-invalid':type.errors && type.touched}"
+                       >
+                       <label for="type">Type de Produits</label>
+                       <div [hidden]="!id.errors?.required" class="invalid-feedback" >
+
+                       </div>
+                   </div>
+               </form>
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" [disabled]="!typePr.valid" (click)="ajouterType()">Ajouter</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+            </div>
+        </div>
+    </div>
+</div>

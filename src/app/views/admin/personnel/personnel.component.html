@@ -152,7 +152,7 @@
 					</div>
 				</div>
 				<div class="md-form md-outline">
-					<input mdbInput  name="editdateN" type="date" id="editdateN" class="form-control" [(ngModel)]="Employe.dateNaissance"
+					<input mdbInput  name="editdateN" type="text" id="editdateN" class="form-control" [(ngModel)]="Employe.dateN"
 						   required
 						   #editdateN="ngModel"
 						   [ngClass]="{'is-invalid':editdateN.errors && editdateN.touched}"
@@ -356,7 +356,7 @@
 						</div>
 					</div>
 					<div class="md-form md-outline">
-						<input mdbInput  name="dateN" type="date" dataformatas="dd-mm-yyyy"  id="dateN" class="form-control" [(ngModel)]="Employe.dateNaissance"
+						<input mdbInput  name="dateN" type="date" dataformatas="dd-mm-yyyy"  id="dateN" class="form-control" [(ngModel)]="Employe.dateN"
 							   required
 							   #dateN="ngModel"
 							   [ngClass]="{'is-invalid':dateN.errors && dateN.touched}"

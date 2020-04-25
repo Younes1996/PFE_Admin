@@ -11,6 +11,8 @@ import { EnginComponent } from './views/admin/engin/engin.component';
 import { ClientComponent } from './views/admin/client/client.component';
 import { PersonnelComponent } from './views/admin/personnel/personnel.component';
 import {CommandeComponent} from './views/admin/commande/commande/commande.component';
+import {ProduitComponent} from './views/admin/produit/produit.component';
+import {TarifComponent} from './views/admin/tarif/tarif.component';
 
 
 const routes: Route[] = [
@@ -35,6 +37,16 @@ const routes: Route[] = [
           { path: 'commande', component:CommandeComponent},
         ]
   },
+    { path: 'admin', children:
+            [
+                { path: 'produit', component:ProduitComponent},
+            ]
+    },
+    { path: 'admin', children:
+            [
+                { path: 'tarif', component:TarifComponent},
+            ]
+    },
 { path: 'admin', children:
 [
   { path: 'engin', component: EnginComponent },

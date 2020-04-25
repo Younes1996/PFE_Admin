@@ -1,25 +1,36 @@
 export class Engins {
 
-    public code_mat:string;
-    public type_mat:string;
+    public codeMat:string;
+    public typeMat:string;
     public marque:string;
-    public N_serie:string;
-    public immatriculation:string;
+    public n_serie:string;
+    public matricule:string;
+    public valAqui:number;
+    public dateAqui:Date;
+    public duree:number;
+    public finAqui:Date;
     public etats:string;
-    public opertaion:string;
+    public operation:string;
     public chaufeur:string;
 
 
 
 
+
+
     constructor() {
-        this.code_mat = "";
-        this.type_mat = "Type Mat";
-        this.marque = "Marque";
-        this.N_serie = "";
-        this.immatriculation = "";
-        this.etats = "Etats";
-        this.opertaion = "Opértaion";
-        this.chaufeur = "Chaufeur";
+        this.codeMat="";
+        this.typeMat="Type Mat";
+        this.marque="Marque";
+        this.n_serie="";
+        this.matricule="";
+        this.valAqui=0.00;
+        this. dateAqui;
+        this.duree=0.00
+        this. finAqui=this. dateAqui;
+        this.etats="Etas";
+        this.operation="Operation";
+        this.chaufeur="Chaufeur";
+
     }
 }

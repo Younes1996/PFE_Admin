@@ -32,7 +32,7 @@ export class PersonnelComponent implements OnInit {
     id:"",
     nom:"",
     prenom:"",
-    dateNaissance:'',
+      dateN:'',
     lieuN:"",
     adresse:"",
     tel:"",
@@ -87,7 +87,7 @@ export class PersonnelComponent implements OnInit {
     this.Employe.id=c.id;
     this.Employe.nom=c.nom;
     this.Employe.prenom=c.prenom;
-    this.Employe.dateNaissance=c.dateN;
+    this.Employe.dateN=c.dateN;
     this.Employe.lieuN=c.lieuN;
     this.Employe.adresse=c.adresse;
     this.Employe.tel=c.tel;

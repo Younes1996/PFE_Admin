@@ -23,6 +23,10 @@ import { EnginComponent } from './admin/engin/engin.component';
 import { ClientComponent } from './admin/client/client.component';
 import { PersonnelComponent } from './admin/personnel/personnel.component';
 import { CommandeComponent } from './admin/commande/commande/commande.component';
+import { HomeComponent } from './admin/Home/home/home.component';
+import {NavigationModule} from '../main-layout/navigation/navigation.module';
+import { ProduitComponent } from './admin/produit/produit.component';
+import { TarifComponent } from './admin/tarif/tarif.component';
 
 
 @NgModule({
@@ -38,7 +42,8 @@ import { CommandeComponent } from './admin/commande/commande/commande.component'
             apiKey: ''
         }),
         CalendarModule.forRoot(),
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NavigationModule
     ],
   declarations: [
     FooterComponent,
@@ -55,17 +60,21 @@ import { CommandeComponent } from './admin/commande/commande/commande.component'
     ClientComponent,
     PersonnelComponent,
     CommandeComponent,
+    HomeComponent,
+    ProduitComponent,
+    TarifComponent,
 
   ],
-  exports: [
-    FooterComponent,
-    BasicTableComponent,
-    ModalsComponent,
-    Map1Component,
-    StatsCardComponent,
-    StatsCard2Component,    
-    Dashboard1Component
-  ],
+    exports: [
+        FooterComponent,
+        BasicTableComponent,
+        ModalsComponent,
+        Map1Component,
+        StatsCardComponent,
+        StatsCard2Component,
+        Dashboard1Component,
+        HomeComponent
+    ],
   schemas: [NO_ERRORS_SCHEMA]
 })
 export class ViewsModule { }

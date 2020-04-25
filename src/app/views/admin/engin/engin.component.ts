@@ -13,13 +13,18 @@ import {Marque} from '../Model/Marque.model';
   styleUrls: ['./engin.component.css']
 })
 export class EnginComponent implements OnInit {
-
-  engin: Engins = new Engins();
-  marques:Marque=new Marque();
-  list_engin:any
+    public size:number=5;
+    public currentpage:number=0;
+    public totalPages:number
+    public pages:Array<number>
+    public isMax:boolean
+    engin: Engins = new Engins();
+    marques:Marque=new Marque();
+    list_engin:any
     list_marque:any
     TypeMat=[{name:"Moiseneuse batteuse"},{name:"Tracteur "},{name:"Matériel Attelé "}]
-    Marque=[{name:"Moiseneuse batteuse"},{name:"Tracteur "},{name:"Matériel Attelé "}]
+    operation=[{name:"Labour Profond"},{name:"Epandage "},{name:"Fourage "},{name:"Moisson-batage"}]
+    Etats=[{name:"En Marche"},{name:"En panne"},{name:"En Réparation"},{name:"Riformé"},{name:"Vutuste"}]
     employes=[]
     constructor(private enginService:EnginsService,
   //private router:Router
@@ -28,6 +33,7 @@ export class EnginComponent implements OnInit {
 
 
   ngOnInit(): void {
+        this.getEngin();
    this.getEmploye_by_cat();
   }
 
@@ -42,7 +48,7 @@ getEmploye_by_cat()
 }
 getMarques()
 {
-    this.enginService.getMarque(this.engin.type_mat).subscribe(
+    this.enginService.getMarque(this.engin.typeMat).subscribe(
         (data:any)=>{
             this.list_marque=data._embedded.marques;
         }
@@ -57,7 +63,7 @@ getMarques()
   }
 
   add_engin() {
-      console.log(this.engin.chaufeur)
+      console.log(this.engin)
     this.enginService.ajouter_Engin(this.engin)
         .subscribe(data =>
             {
@@ -94,8 +100,16 @@ getMarques()
   }
 
   private getEngin() {
-    this.enginService.get_Engin()
-        .subscribe(data=>this.list_engin=data);
+    this.enginService.getEngint_By_Page(this.size,this.currentpage).subscribe(
+
+          (data:any)=>{
+              this.totalPages=data['page'].totalPages
+              this.pages=new Array<number>(this.totalPages)
+              this.list_engin=data._embedded.engins
+
+          }
+
+      )
 
   }
 
@@ -133,7 +147,24 @@ getMarques()
 
     }
 
-    update_Client() {
+    get_Next_Page() {
+        this.currentpage=this.currentpage+1
+        this.getEngin()
+
+        if(this.currentpage==this.totalPages)
+        {
+            this.isMax==false
+        }
+
+    }
+
+    get_Previouss_Page() {
+        this.currentpage=this.currentpage-1
+        this.getEngin()
+    }
+    Onget_Engin(i: number) {
+        this.currentpage=i;
+        this.getEngin()
 
     }
 }

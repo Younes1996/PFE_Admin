@@ -1,22 +1,38 @@
 
 <div id="navigation">
     <div class="row" >
-        <div class="col-md-4">
-            <div class="card mb-2">
+        <div class="col-md-3" >
+            <div class="card mb-2" style="border-color: #03A9F4">
                 <img class="card-img-top"
                      src="../../../../assets/img/employe.jpeg"
+                     style="height: 5cm"
 
                      alt="Card image cap">
                 <div class="card-body"
                      [routerLink]="personnel"
 
                 >
-                    <button    type="button" class="btn btn-primary btn-lg btn-block">Gestion des Employé</button>
+                    <button    type="button" class="btn btn-primary btn-lg btn-block">Les Employés</button>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card mb-2">
+        <div class="col-md-3">
+            <div class="card mb-2" style="border-color: #03A9F4">
+                <img class="card-img-top"
+                     style="height: 5cm"
+                     src="../../../../assets/img/pr.png"
+
+                     alt="Card image cap">
+                <div class="card-body"
+                     [routerLink]="produit"
+
+                >
+                    <button type="button" class="btn btn-primary btn-lg btn-block">Les Produits</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2" >
+            <div class="card mb-2" style="border-color: #03A9F4">
                 <img class="card-img-top"
                      style="height: 5cm"
                      src="../../../../assets/img/clients.jpg"
@@ -25,12 +41,12 @@
 
                      [routerLink]="client"
                 >
-                    <button type="button" class="btn btn-primary btn-lg btn-block">Gestion des Clients</button>
+                    <button type="button" class="btn btn-primary btn-lg btn-block">Les Clients</button>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card mb-2">
+        <div class="col-md-2" >
+            <div class="card mb-2" style="border-color: #03A9F4">
                 <img class="card-img-top"
                      style="height: 5cm"
                      src="../../../../assets/img/engins.jpg"
@@ -40,7 +56,24 @@
                      [routerLink]="engin"
 
                 >
-                    <button type="button" class="btn btn-primary btn-lg btn-block">Gestion des Engins</button>
+                    <button type="button" class="btn btn-primary btn-lg btn-block">Les Engins</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="card mb-2" style="border-color: #03A9F4">
+                <img class="card-img-top"
+                     style="height: 5cm"
+                     src="../../../../assets/img/PRIX.jpg"
+
+                     alt="Card image cap">
+                <div class="card-body"
+
+                     [routerLink]="tarif"
+
+                >
+                    <button type="button" class="btn btn-primary btn-lg btn-block">Les Tarifs</button>
                 </div>
             </div>
         </div>
