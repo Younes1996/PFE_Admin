@@ -1,0 +1,84 @@
+<br>
+
+
+
+
+
+<div class="table-wrapper">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-6" style="font-family: Garamond;font-size: 26px">
+                <h2>Gestions des <b>Commande</b></h2>
+            </div>
+            <div class="col-sm-2" >
+
+                <input style="width: 310px" (keyup)="filter()" [(ngModel)]="datasource" class="form-control my-0 py-1" type="text" placeholder="Rechercher" aria-label="Search">
+            </div>
+            <div class="col-sm-2">
+                <div class="input-group-prepend">
+                    <span style="height: 38px;margin-left: 70px" class="input-group-text pink lighten-3" id="basic-text1"><i class="fas fa-search text-white" aria-hidden="true"></i></span>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <a href="#addEmployeeModal" class="h" data-toggle="modal"><i class="fas fa-plus fa-8x "></i> <span></span></a>
+
+            </div>
+        </div>
+    </div>
+    <table  class="table table-striped " >
+        <thead>
+        <tr>
+            <th>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="selectAll">
+								<label for="selectAll"></label>
+							</span>
+            </th>
+
+            <th>N° </th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Adresse</th>
+            <th>Tél</th>
+            <th>Wilaya</th>
+            <th>Daira</th>
+            <th>Action</th>
+
+
+
+
+        </tr>
+        </thead>
+        <tbody >
+
+
+        <tr *ngFor=" let c of list_Client " >
+            <td>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="checkbox1" name="options[]" value="1">
+								<label for="checkbox1"></label>
+							</span>
+            </td>
+            <td>{{c.id}}</td>
+            <td>{{c.nom}}</td>
+            <td>{{c.prenom}}</td>
+            <td>{{c.adresse}}</td>
+            <td>{{c.tel}}</td>
+            <td>{{c.wilaya}}</td>
+            <td>{{c.daira}}</td>
+
+
+
+
+            <td>
+
+                <a  href="#editEmployeeModal"      class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xe8f4;</i></a>
+                <a href="#editModal" (click)="get_Info(c)"   class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                <a (click)="delete_client(c.id)" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+            </td>
+        </tr>
+
+
+        </tbody>
+    </table>
+</div>

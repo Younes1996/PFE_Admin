@@ -48,6 +48,20 @@ export class EnginsService {
 
     return this.http.get(this.baseUrl+"s?page="+page+"&size="+size);
   }
+   Filter_Engins(nom:any):Observable<Object>
+  {
+    return this.http.get("http://localhost:8080/engins/search/findByMarqueContaining?nom="+nom);
+  }
+  getTracteur(nom:any):Observable<Object>
+  {
+    return this.http.get("http://localhost:8080/engins/search/findByTypeMat?nom="+nom);
+  }
+  getOperation(){
+    return this.http.get('http://localhost:8080/travail');
 
+  }
+  ajouter_Operation(op:any):Observable<any>    {
+    return this.http.post("http://localhost:8080/travail", op);
+  }
 }
 //http://localhost:8080/employes/search/findByCategorie?nom=chaufeurs

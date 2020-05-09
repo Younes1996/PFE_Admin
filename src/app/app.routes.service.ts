@@ -10,9 +10,9 @@ import { Dashboard1Component } from './views/dashboards/dashboard1/dashboard1.co
 import { EnginComponent } from './views/admin/engin/engin.component';
 import { ClientComponent } from './views/admin/client/client.component';
 import { PersonnelComponent } from './views/admin/personnel/personnel.component';
-import {CommandeComponent} from './views/admin/commande/commande/commande.component';
 import {ProduitComponent} from './views/admin/produit/produit.component';
 import {TarifComponent} from './views/admin/tarif/tarif.component';
+import {CommandeComponent} from './views/admin/commande/commande.component';
 
 
 const routes: Route[] = [

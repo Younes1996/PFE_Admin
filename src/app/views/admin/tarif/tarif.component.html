@@ -1,1 +1,240 @@
 <app-na></app-na>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<br>
+
+<div class="table-wrapper">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-6" style="font-family: Garamond;font-size: 26px">
+                <h2>Gestions des <b>Prix et Tarifs</b></h2>
+            </div>
+            <div class="col-sm-2" >
+
+                <input style="width: 310px" (keyup)="filter()" [(ngModel)]="datasource" class="form-control my-0 py-1" type="text" placeholder="Rechercher" aria-label="Search">
+            </div>
+            <div class="col-sm-2">
+                <div class="input-group-prepend">
+                    <span style="height: 38px;margin-left: 70px" class="input-group-text pink lighten-3" id="basic-text1"><i class="fas fa-search text-white" aria-hidden="true"></i></span>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <a href="#addTarif" class="h" data-toggle="modal"><i class="fas fa-plus fa-8x "></i> <span></span></a>
+
+            </div>
+        </div>
+    </div>
+    <table  class="table table-striped " >
+        <thead>
+        <tr>
+            <th>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="selectAll">
+								<label for="selectAll"></label>
+							</span>
+            </th>
+
+            <th>N° </th>
+            <th>Type de Préstation</th>
+            <th>N-Travail</th>
+            <th>Outils</th>
+            <th>Tracteur</th>
+            <th>Prix </th>
+            <th>Action</th>
+
+
+
+
+        </tr>
+        </thead>
+        <tbody >
+
+
+        <tr *ngFor=" let c of list_tarif " >
+            <td>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="checkbox1" name="options[]" value="1">
+								<label for="checkbox1"></label>
+							</span>
+            </td>
+            <td>{{c.id}}</td>
+            <td>{{c.prestation}}</td>
+            <td>{{c.natureTravail}}</td>
+            <td>{{c.outils}}</td>
+            <td>{{c.tracteur}}</td>
+            <td>{{c.pu}}</td>
+
+
+
+
+            <td>
+
+                <a  href="#editEmployeeModal"      class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xe8f4;</i></a>
+                <a href="#editTarif" (click)="get_Info(c)"   class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                <a (click)="delete_client(c.id)" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+            </td>
+        </tr>
+
+
+        </tbody>
+    </table>
+    <div  *ngIf="pages">
+        <ul class="pagination">
+            <li class="page-item "><a (click)="get_Previouss_Page()" class="page-link">Previous</a></li>
+            <li class="page-item"  *ngFor="let p of  pages;let i=index"><a class="page-link"(click)="Onget_Tarif(i)" >{{i}}</a></li>
+
+            <li class="page-item" > <a  (click)="get_Next_Page()"  class="page-link"   >Next</a></li>
+        </ul>
+    </div>
+
+    <!-- edit Modal HTML -->
+
+    <div id="addTarif" class="modal fade">
+        <div  class="modal-dialog modal-dialog-scrollable" role="document" >
+            <div class="modal-content">
+
+                <div class="modal-header" style="background-color: rgb(20, 91, 161);font-family: garamond;color: white;">
+                    <h4 class="modal-title w-100" id="myModelTitle"> <i class="material-icons">&#xe7fe;</i> Nouveau Tarif</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body" >  <!--  Start Body                 !-->
+                    <form #client="ngForm" >
+
+                        <div class="md-form md-outline">
+
+                            <select  name="tp" id="tp" [(ngModel)]="tarif.prestation" class="browser-default custom-select">
+                                <option   selected >{{tarif.prestation}}</option>
+                                <option >Préstation</option>
+                                <option >Location</option>
+
+                            </select>
+
+                        </div>
+                        <div class="md-form md-outline">
+
+                            <select  (click)="getOutils()" name="nt" id="nt" [(ngModel)]="tarif.natureTravail" class="browser-default custom-select">
+                                <option  selected >{{tarif.natureTravail}}</option>
+                                <option *ngFor="let o of NatureTravail">{{o.operation}}</option>
+
+
+                            </select>
+
+                        </div>
+                        <div class="md-form md-outline">
+                            <select  name="outils" id="outils"  class="browser-default custom-select" [(ngModel)]="tarif.outils">
+                                <option selected>{{tarif.outils}}</option>
+                                <option *ngFor="let o of Outils ">{{o.marque}}</option>
+                            </select>
+
+                        </div>
+                        <div class="md-form md-outline">
+                            <select  name="trac" id="trac"  class="browser-default custom-select" [(ngModel)]="tarif.tracteur">
+                                <option selected>{{tarif.tracteur}}</option>
+                                <option *ngFor="let t of Tracteur ">{{t.marque}}</option>
+                            </select>
+
+                        </div>
+                        <div class="md-form md-outline">
+                            <input mdbInput  name="pu" type="text" id="pu" class="form-control" [(ngModel)]="tarif.pu"
+                                   required
+                                   #pu="ngModel"
+                                   [ngClass]="{'is-invalid':pu.errors && pu.touched}"
+                            >
+                            <label for="pu">Prix Unitaire</label>
+                            <div [hidden]="!pu.errors?.required" class="invalid-feedback" >
+
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div> <!--  finish Body                 !-->
+
+                <div class="modal-footer" style="background-color: white">
+                    <button type="submit" class="btn btn-outline-primary" (click)="ajouterTarif()">Enregistrer</button>
+                    <button class="btn btn-danger" data-dismiss="modal">Annuler</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="editTarif" class="modal fade">
+        <div  class="modal-dialog modal-dialog-scrollable" role="document" >
+            <div class="modal-content">
+
+                <div class="modal-header" style="background-color: rgb(20, 91, 161);font-family: garamond;color: white;">
+                    <h4 class="modal-title w-100" id="myModelTitl"> <i class="material-icons">&#xe7fe;</i>MAJ-Tarif</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body" >  <!--  Start Body                 !-->
+                    <form #client="ngForm" >
+
+                        <div class="md-form md-outline">
+
+                            <select  name="tp" id="edit_tp" [(ngModel)]="tarif.prestation" class="browser-default custom-select">
+                                <option   selected >{{tarif.prestation}}</option>
+                                <option >Préstation</option>
+                                <option >Location</option>
+
+                            </select>
+
+                        </div>
+                        <div class="md-form md-outline">
+
+                            <select  (click)="getOutils()" name="nt" id="edit_nt" [(ngModel)]="tarif.natureTravail" class="browser-default custom-select">
+                                <option  selected >{{tarif.natureTravail}}</option>
+                                <option *ngFor="let o of NatureTravail">{{o.operation}}</option>
+
+
+                            </select>
+
+                        </div>
+                        <div class="md-form md-outline">
+                            <select  name="outils" id="edit_outils"  class="browser-default custom-select" [(ngModel)]="tarif.outils">
+                                <option selected>{{tarif.outils}}</option>
+                                <option *ngFor="let o of Outils ">{{o.marque}}</option>
+                            </select>
+
+                        </div>
+                        <div class="md-form md-outline">
+                            <select  name="trac" id="edit_trac"  class="browser-default custom-select" [(ngModel)]="tarif.tracteur">
+                                <option selected>{{tarif.tracteur}}</option>
+                                <option *ngFor="let t of Tracteur ">{{t.marque}}</option>
+                            </select>
+
+                        </div>
+                        <div class="md-form md-outline">
+                            <input mdbInput  name="pu" type="text" id="edit_pu" class="form-control" [(ngModel)]="tarif.pu"
+                                   required
+                                   #pu="ngModel"
+                                   [ngClass]="{'is-invalid':pu.errors && pu.touched}"
+                            >
+                            <label for="edit_pu">Prix Unitaire</label>
+                            <div [hidden]="!pu.errors?.required" class="invalid-feedback" >
+
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div> <!--  finish Body                 !-->
+
+                <div class="modal-footer" style="background-color: white">
+                    <button type="submit" class="btn btn-outline-primary" (click)="update_Tarif()">Mettre à jour</button>
+                    <button class="btn btn-danger" data-dismiss="modal">Annuler</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>

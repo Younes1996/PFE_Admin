@@ -12,8 +12,17 @@
 			<div class="col-sm-6" style="font-family: Garamond;font-size: 26px">
 				<h2>Gestions des <b>Engins</b></h2>
 			</div>
-			<div class="col-sm-6">
-				<a href="#addEmployeeModal" class="h" data-toggle="modal"><i class="material-icons">&#xe3cd;</i> <span></span></a>
+			<div class="col-sm-2" >
+
+				<input style="width: 310px" (keyup)="filter_Engins()" [(ngModel)]="datasource" class="form-control my-0 py-1" type="text" placeholder="Rechercher" aria-label="Search">
+			</div>
+			<div class="col-sm-2">
+				<div class="input-group-prepend">
+					<span style="height: 38px;margin-left: 70px" class="input-group-text pink lighten-3" id="basic-text1"><i class="fas fa-search text-white" aria-hidden="true"></i></span>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<a href="#addEmployeeModal" (click)="afficher()" class="h" data-toggle="modal"><i class="fas fa-plus fa-8x "></i> <span></span></a>
 
 			</div>
 		</div>
@@ -27,7 +36,6 @@
 								<label for="selectAll"></label>
 							</span>
 			</th>
-
 			<th>Code-Mat </th>
 			<th>Marque</th>
 			<th>Type Mat</th>
@@ -58,17 +66,11 @@
 			<td>{{c.finAqui}}</td>
 			<td>{{c.chaufeur}}</td>
 
-
-
-
-
-
-
 			<td>
 
-				<a  href="#"      class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xe8f4;</i></a>
-				<a href="#" (click)="get_Info(c)"   class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-				<a  class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+				<a  href="#" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xe8f4;</i></a>
+				<a href="#editEngin" (click)="get_Info(c)"   class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+				<a  (click)="delete_Engins(c.id)"class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 			</td>
 
 		</tr>
@@ -215,10 +217,21 @@
 					</div>
 					<div class="md-form md-outline">
 
-						<select  name="operation" id="operation" [(ngModel)]="engin.operation" class="browser-default custom-select">
-							<option selected>{{engin.operation}}</option>
-							<option *ngFor="let o of operation">{{o.name}}</option>
-						</select>
+						<div class="row ">
+							<div class="col-lg-8">
+								<select  name="operation" id="operation" [(ngModel)]="engin.operation" class="browser-default custom-select">
+									<option selected>{{engin.operation}}</option>
+									<option *ngFor="let o of operation">{{o.operation}}</option>
+								</select>
+							</div>
+							<div class="col-lg-4">
+								<div class="col-lg-2">
+									<a href="#natureTravail" class="h" data-toggle="modal"><i class="fas fa-plus fa-2x "></i>  <span></span></a>
+								</div>
+							</div>
+
+						</div>
+
 					</div>
 					<div class="md-form md-outline" *ngIf="employes">
 
@@ -290,67 +303,210 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="marque_Model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<!-- fin Marque -->
+
+<div class="modal fade" id="natureTravail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
-
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ajouter Marques</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form #marque_value="ngForm">
-
+		<div class="modal-content">
+			<div class="modal-header" style="background-color: rgb(20, 91, 161);font-family: garamond;color: white;" >
+				<h4 class="modal-title" id="nature">Ajouter N-Travail</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form #f="ngForm">
 
 					<div class="md-form md-outline">
-						<input mdbInput  name="nom_ma" type="text" id="nom_ma" class="form-control" ngModel
+						<input mdbInput  name="operation" type="text" id="nt" class="form-control" [(ngModel)]="engin.operation"
 							   required
-							   #nom_ma="ngModel"
-							   [ngClass]="{'is-invalid':nom_ma.errors && nom_ma.touched}"
+							   #nt="ngModel"
+							   [ngClass]="{'is-invalid':nt.errors && nt.touched}"
 						>
-						<label for="nom_ma">Nom de Marque</label>
-						<div [hidden]="!nom_ma.errors?.required" class="invalid-feedback" >
+						<label for="nt">Nature de Travail</label>
+						<div [hidden]="!nt.errors?.required" class="invalid-feedback" >
 
 						</div>
 					</div>
 
-
-
-					<div class="md-form md-outline">
-
-						<select  name="type_mats" id="type"  class="browser-default custom-select" ngModel>
-							<option value="" disabled selected hidden>{{engin.typeMat}}</option>
-							<option *ngFor="let t of TypeMat"> {{t.name}}</option>
-
-						</select>
-
-					</div>
-		</form>
-
-
-	</div>
-
-				<div class="modal-footer"  style="background-color: white">
-					<button  class="btn btn-primary" (click)="ajouterMarque()" >Ajouter</button>
-
-					<button  class="btn btn-danger" data-dismiss="modal">Annuler</button>
-				</div>
+				</form>
 			</div>
-
-
-
-
+			<div class="modal-footer" style="background-color: white">
+				<button type="button" class="btn btn-primary" (click)="ajouterOperation()">Ajouter</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+			</div>
+		</div>
 	</div>
 </div>
 
-<!-- fin Marque -->
+
+
+
+<div id="editEngin" class="modal fade">
+	<div  class="modal-dialog modal-dialog-scrollable" role="document" >
+		<div class="modal-content">
+
+			<div class="modal-header" style="background-color: rgb(20, 91, 161);font-family: garamond;color: white;" >
+				<h4 class="modal-title w-100" id="edit_myModelTitleds"> <i class="material-icons">&#xe7fe;</i> MAJ-Engins</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body" >  <!--  Start Body                 !-->
+				<form #client="ngForm" >
+					<div class="md-form md-outline">
+						<input mdbInput  name="codeMat" type="text" id="edit_codeMat" class="form-control" [(ngModel)]="engin.codeMat"
+							   required
+							   #codeMat="ngModel"
+							   [ngClass]="{'is-invalid':codeMat.errors && codeMat.touched}"
+						>
+						<label for="edit_codeMat">Code Matériel</label>
+						<div [hidden]="!codeMat.errors?.required" class="invalid-feedback" >
+							le codeMat est obligatoir
+
+						</div>
+					</div>
+					<div class="md-form md-outline">
+
+						<select (click)="getMarques()" name="type_mat" id="edit_type_mat" [(ngModel)]="engin.typeMat" class="browser-default custom-select">
+							<option selected>{{engin.typeMat}}</option>
+							<option *ngFor="let t of TypeMat">{{t.name}}</option>
+						</select>
+					</div>
+
+					<div class="md-form md-outline">
+
+						<div class="row col-lg-12">
+							<div class="com-lg-10">
+								<select  name="marque" id="edit_marque"  class="browser-default custom-select" [(ngModel)]="engin.marque">
+									<option selected>{{engin.marque}}</option>
+									<option *ngFor="let m of list_marque">{{m.nom}}</option>
+								</select>
+							</div>
+
+
+							<div class="col-lg-2">
+								<a href="#exampleModal" class="h" data-toggle="modal"><i class="fas fa-plus fa-2x "></i>  <span></span></a>
+
+							</div>
+
+						</div>
+
+
+
+					</div>
 
 
 
 
+					<div class="md-form md-outline">
+						<input mdbInput  name="Nserie" type="text" id="edit_Nserie" class="form-control" [(ngModel)]="engin.n_serie"
+							   required
+							   #Nserie="ngModel"
+							   [ngClass]="{'is-invalid':Nserie.errors && Nserie.touched}"
+						>
+						<label for="Nserie">N° série</label>
+						<div [hidden]="!Nserie.errors?.required" class="invalid-feedback" >
 
+						</div>
+					</div>
+
+					<div class="md-form md-outline">
+						<input mdbInput  name="matricule" type="text" id="edit_matricule" class="form-control" [(ngModel)]="engin.matricule"
+							   required
+							   #matricule="ngModel"
+							   [ngClass]="{'is-invalid':matricule.errors && matricule.touched}"
+						>
+						<label for="matricule">Immatriculation</label>
+						<div [hidden]="!matricule.errors?.required" class="invalid-feedback" >
+							le N° est obligatoir
+
+						</div>
+					</div>
+
+					<div class="md-form md-outline">
+						<input mdbInput  name="valAqui" type="number" id="edit_valAqui" class="form-control" [(ngModel)]="engin.valAqui"
+							   required
+							   #valAqui="ngModel"
+							   [ngClass]="{'is-invalid':valAqui.errors && valAqui.touched}"
+						>
+						<label for="valAqui">Valeur d'aquis</label>
+						<div [hidden]="!valAqui.errors?.required" class="invalid-feedback" >
+
+						</div>
+					</div>
+
+					<div class="md-form ">
+						<input type="text" name="dateAquis" id="edit_dateAquis" class="form-control" [(ngModel)]="engin.dateAqui"
+
+							   mdbInput>
+						<label for="dateAquis">date d'aquis</label>
+					</div>
+					<div class="md-form md-outline">
+						<input mdbInput  name="duree" type="number" id="edit_duree" class="form-control" [(ngModel)]="engin.duree"
+							   required
+							   #duree="ngModel"
+							   [ngClass]="{'is-invalid':duree.errors && duree.touched}"
+						>
+						<label for="duree">duree</label>
+						<div [hidden]="!duree.errors?.required" class="invalid-feedback" >
+
+						</div>
+					</div>
+					<div class="md-form">
+						<input type="text" name="finAquis" id="edit_finAquis" class="form-control" [(ngModel)]="engin.finAqui"
+
+							   mdbInput>
+						<label for="finAquis">Fin aquis</label>
+					</div>
+
+					<div class="md-form md-outline">
+
+						<select  name="etats" id="edit_etats" [(ngModel)]="engin.etats" class="browser-default custom-select">
+							<option selected>{{engin.etats}}</option>
+							<option *ngFor="let e of Etats">{{e.name}}</option>
+						</select>
+					</div>
+					<div class="md-form md-outline">
+
+						<div class="row ">
+							<div class="col-lg-8">
+								<select  name="operation" id="edit_operation" [(ngModel)]="engin.operation" class="browser-default custom-select">
+									<option selected>{{engin.operation}}</option>
+									<option *ngFor="let o of operation">{{o.operation}}</option>
+								</select>
+							</div>
+							<div class="col-lg-4">
+								<div class="col-lg-2">
+									<a href="#natureTravail" class="h" data-toggle="modal"><i class="fas fa-plus fa-2x "></i>  <span></span></a>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+					<div class="md-form md-outline" *ngIf="employes">
+
+						<select  name="chauffeur" id="edit_chauffeur" [(ngModel)]="engin.chaufeur" class="browser-default custom-select">
+							<option selected>{{engin.chaufeur}}</option>
+							<option *ngFor="let e of employes">{{e.nom +" "+e.prenom}}</option>
+						</select>
+					</div>
+
+
+
+				</form>
+
+			</div> <!--  finish Body                 !-->
+
+			<div class="modal-footer" style="background-color: white">
+				<button type="submit" class="btn btn-outline-primary" (click)="update_engin()">mettre à jour</button>
+				<button class="btn btn-danger" data-dismiss="modal">Annuler</button>
+
+			</div>
+
+		</div>
+	</div>
+</div>
 
 
 

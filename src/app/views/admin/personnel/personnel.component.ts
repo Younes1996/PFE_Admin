@@ -12,15 +12,19 @@ export class PersonnelComponent implements OnInit {
 
   ) { }
 
-  public size:number=5;
-  public currentPage:number=0;
+    public size:number=5;
+    public currentpage:number=0;
+    public totalPages:number
+    public pages:Array<number>
+    public isMax:boolean
+    public datasource:string
 
   public contacts=[];
-    datasource:string
 
     ngOnInit(): void {
-         this.contactservice.getEmpploye()
-        .subscribe((data:any)=>this.contacts=data);
+         /*this.contactservice.getEmpploye()
+        .subscribe((data:any)=>this.contacts=data);*/
+        this.onGetEmploye();
   }
   Catgorie=[{id:1,name:'Gérant'},{id:2,name:'Chaufeur'},{id:3,name:'Mécanicien'}]
   fonctions=[{id:1,name:'C-service'},{id:2,name:'Comtable'},{id:3,name:'S-directeur'}]
@@ -53,16 +57,16 @@ export class PersonnelComponent implements OnInit {
          this.contactservice.createEmployee(this.Employe)
         .subscribe(data =>
         {
-          console.log(data),
-              Swal.fire({
+                console.log(data),
+                Swal.fire({
                 position: 'center',
                 icon: 'success',
                 title: 'L ajout est fait avec Succes',
-                showConfirmButton: false,
+                showConfirmButton: true,
                 timer: 1500
               })
 
-                  this.getEmploye()
+            this.onGetEmploye();
 
         },error => {
           console.log(error)
@@ -126,7 +130,7 @@ export class PersonnelComponent implements OnInit {
         this.contactservice.deleteContact(id)
             .subscribe(data=>{
                   console.log(data);
-                  this.getEmploye();
+                this.onGetEmploye();
                 }
             );
       }
@@ -153,9 +157,12 @@ export class PersonnelComponent implements OnInit {
   }
 
   onGetEmploye(){
-    this.contactservice.getEmploye(this.currentPage,this.size )
+    this.contactservice.getEmploye(this.currentpage,this.size )
         .subscribe((data:any)=>{
-          this.contacts=data;
+            this.totalPages=data['page'].totalPages
+            this.pages=new Array<number>(this.totalPages)
+            this.contacts=data._embedded.employes;
+
         },err=>{
           console.log(err);
         });
@@ -178,7 +185,7 @@ export class PersonnelComponent implements OnInit {
                                 timer: 1500
                             })
 
-                        this.getEmploye()
+                        this.onGetEmploye();
 
                     },error => {
                         console.log(error)
@@ -205,6 +212,31 @@ export class PersonnelComponent implements OnInit {
 
          (data:any) =>this.contacts=data._embedded.employes
      )
+
+    }
+
+    Onget_Client(i: number) {
+        this.currentpage=i;
+        this.onGetEmploye();
+
+    }
+
+    get_Next_Page() {
+        this.currentpage=this.currentpage+1
+        this.onGetEmploye();
+
+        if(this.currentpage==this.totalPages)
+        {
+            this.isMax==false
+        }
+
+    }
+
+    get_Previouss_Page() {
+        this.currentpage=this.currentpage-1
+        this.onGetEmploye();
+
+
 
     }
 }

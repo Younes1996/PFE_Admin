@@ -22,11 +22,11 @@ import { NavComponent } from './nav/nav.component';
 import { EnginComponent } from './admin/engin/engin.component';
 import { ClientComponent } from './admin/client/client.component';
 import { PersonnelComponent } from './admin/personnel/personnel.component';
-import { CommandeComponent } from './admin/commande/commande/commande.component';
 import { HomeComponent } from './admin/Home/home/home.component';
 import {NavigationModule} from '../main-layout/navigation/navigation.module';
 import { ProduitComponent } from './admin/produit/produit.component';
 import { TarifComponent } from './admin/tarif/tarif.component';
+import {CommandeComponent} from './admin/commande/commande.component';
 
 
 @NgModule({

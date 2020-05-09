@@ -1,5 +1,5 @@
 export class Engins {
-
+   public id:number;
     public codeMat:string;
     public typeMat:string;
     public marque:string;
@@ -20,7 +20,7 @@ export class Engins {
 
     constructor() {
         this.codeMat="";
-        this.typeMat="Type Mat";
+        this.typeMat="Type Materiel";
         this.marque="Marque";
         this.n_serie="";
         this.matricule="";
@@ -29,7 +29,7 @@ export class Engins {
         this.duree=0.00
         this. finAqui=this. dateAqui;
         this.etats="Etas";
-        this.operation="Operation";
+        this.operation="Nature de Travail";
         this.chaufeur="Chaufeur";
 
     }

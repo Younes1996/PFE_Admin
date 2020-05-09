@@ -21,6 +21,7 @@ export class ClientComponent implements OnInit {
     public isMax:boolean
     public datasource:string
     cl: Clients = new Clients();
+    public index:number;
     list_Client=[]
     constructor(
        private clientService: ClientsService,

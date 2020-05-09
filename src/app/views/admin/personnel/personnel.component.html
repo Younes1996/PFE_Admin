@@ -87,16 +87,14 @@
 
 			</tbody>
 		</table>
-		<div class="clearfix">
-			<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+		<div>
 			<ul class="pagination">
-				<li class="page-item disabled"><a href="#">Previous</a></li>
-				<li class="page-item"><a href="#" class="page-link">1</a></li>
+				<li class="page-item "><a (click)="get_Previouss_Page()" class="page-link">Previous</a></li>
+				<li class="page-item"  *ngFor="let p of  pages;let i=index"><a class="page-link"(click)="Onget_Client(i)" >{{i}}</a></li>
 
-				<li class="page-item"><a href="#" class="page-link">Next</a></li>
+				<li class="page-item" > <a  (click)="get_Next_Page()"  class="page-link"   >Next</a></li>
 			</ul>
 		</div>
-	</div>
 
 
 
@@ -257,8 +255,8 @@
 				</form>
 			</div>
 
-			<div class="modal-footer" style="font-family: Garamond;background-color: white;justify-items: left">
-                <button class="btn btn-success" (click)="updateEmploye()" [disabled]="!controle.valid" >Enregistrer </button>
+			<div class="modal-footer" style="background-color: white;justify-items: left">
+                <button class="btn btn-outline-primary" (click)="updateEmploye()" [disabled]="!controle.valid" >Mettre à jour </button>
 				<button class="btn btn-danger"  data-dismiss="modal">Annuler </button>
 
 			</div>
@@ -296,26 +294,6 @@
 
 
 <!-- Delete Modal HTML -->
-<div id="deleteEmployeeModal" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<form>
-				<div class="modal-header">
-					<h4 class="modal-title">Delete Employee</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				</div>
-				<div class="modal-body">
-					<p>Are you sure you want to delete these Records?</p>
-					<p class="text-warning"><small>This action cannot be undone.</small></p>
-				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-danger" value="Delete">
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
 
 
 
@@ -472,8 +450,8 @@
 				</form>
 			</div>
 
-			<div class="modal-footer" style="font-family: Garamond;background-color: white">
-                <button class="btn btn-primary" type="submit" (click)="saveEmploye(controle.value)" [disabled]="!controle.valid">Enregistrer</button>
+			<div class="modal-footer" style="background-color: white">
+                <button class="btn btn-outline-primary" type="submit" (click)="saveEmploye(controle.value)" [disabled]="!controle.valid">Enregistrer</button>
 				<button class="btn btn-danger"  data-dismiss="modal">Annuler </button>
 
 			</div>

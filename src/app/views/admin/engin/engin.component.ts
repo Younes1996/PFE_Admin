@@ -18,14 +18,18 @@ export class EnginComponent implements OnInit {
     public totalPages:number
     public pages:Array<number>
     public isMax:boolean
+    datasource:string ;
     engin: Engins = new Engins();
     marques:Marque=new Marque();
     list_engin:any
     list_marque:any
     TypeMat=[{name:"Moiseneuse batteuse"},{name:"Tracteur "},{name:"Matériel Attelé "}]
-    operation=[{name:"Labour Profond"},{name:"Epandage "},{name:"Fourage "},{name:"Moisson-batage"}]
+    operation:any
+
+        //[{name:"Labour Profond"},{name:"Epandage "},{name:"Fourage "},{name:"Moisson-batage"}]
     Etats=[{name:"En Marche"},{name:"En panne"},{name:"En Réparation"},{name:"Riformé"},{name:"Vutuste"}]
     employes=[]
+    index: any;
     constructor(private enginService:EnginsService,
   //private router:Router
 
@@ -34,7 +38,9 @@ export class EnginComponent implements OnInit {
 
   ngOnInit(): void {
         this.getEngin();
-   this.getEmploye_by_cat();
+        this.getEmploye_by_cat();
+        this.getOperation()
+
   }
 
 
@@ -54,16 +60,13 @@ getMarques()
         }
     )
 }
-  delete_Engin(id: any) {
-    console.log(id)
-  }
+
 
   get_Info(c: any) {
-    console.log(c)
+        this.engin=c;
   }
 
   add_engin() {
-      console.log(this.engin)
     this.enginService.ajouter_Engin(this.engin)
         .subscribe(data =>
             {
@@ -165,6 +168,120 @@ getMarques()
     Onget_Engin(i: number) {
         this.currentpage=i;
         this.getEngin()
+
+    }
+
+    public filter_Engins() {
+        this.enginService.Filter_Engins(this.datasource).subscribe(
+
+            (data:any) =>this.list_engin=data._embedded.engins
+        )
+
+
+    }
+
+    delete_Engins(id: any) {
+        Swal.fire({
+            title: 'Vous êtes sure?',
+            text: "L'engins sera perdu!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Confirmer'
+        }).then((result) => {
+            if (result.value) {
+                Swal.fire(
+                    'Bien Supprimé!',
+                    'La suppression est bien Fait.',
+                    'success'
+                )
+                this.enginService.delete_Engin(id)
+                    .subscribe(data=>{
+                            console.log(data);
+                            this.getEngin();
+                        }
+                    );
+            }
+        })
+
+
+    }
+    getOperation()
+    {
+        this.enginService.getOperation().subscribe(
+            data=>{
+                this.operation=data;
+            }
+        )
+    }
+    ajouterOperation() {
+        console.log(this.engin.operation)
+        this.enginService.ajouter_Operation(this.engin)
+            .subscribe(data =>
+                {
+                    console.log(data),
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'L ajout est fait avec Succes',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    this.getOperation()
+
+                },error => {
+                    console.log(error)
+                    Swal.fire({
+                        icon: 'error',
+                        title: '',
+                        text: 'Veuillez réessayer',
+                        footer:''
+                    })
+                }
+
+
+
+
+
+            );
+
+    }
+
+    afficher() {
+        console.log("dec")
+    }
+
+    update_engin() {
+        this.enginService.update_Engin(this.engin,this.engin.id)
+            .subscribe(data =>
+                {
+                    console.log(data),
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Le mise a jour est bien fait',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+
+                    this.getEngin()
+
+                },error => {
+                    console.log(error)
+                    Swal.fire({
+                        icon: 'error',
+                        title: '',
+                        text: '',
+                        footer:''
+                    })
+                }
+
+
+
+
+
+            );
 
     }
 }
