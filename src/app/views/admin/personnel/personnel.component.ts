@@ -7,7 +7,22 @@ import Swal from 'sweetalert2';
   styleUrls: ['./personnel.component.css']
 })
 export class PersonnelComponent implements OnInit {
-  constructor(
+
+
+    values: string[] = ['Tag 1', 'Tag 2', 'Tag 4'];
+
+    specialPage: boolean;
+    public isTrue:boolean=true;
+
+
+
+
+
+
+
+
+
+    constructor(
       private contactservice:ContactsService,
 
   ) { }

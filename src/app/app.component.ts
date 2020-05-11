@@ -44,6 +44,9 @@ public isTrue:boolean=true;
   }
 
 
-
+public  log()
+{
+  this.isTrue=false
+}
 
 }

@@ -14,6 +14,7 @@ import { NavigationComponent } from './navigation.component';
   ],
   declarations: [
     NavigationComponent,
+
   ],
   exports: [
     NavigationComponent

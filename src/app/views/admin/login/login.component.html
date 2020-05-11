@@ -1,0 +1,62 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<section class="login-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 banner-sec" >
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators" >
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner" role="listbox">
+                        <div class="carousel-item active">
+                            <img style="height: 13cm;border-style:outset;border-color: #36b666" class="d-block img-fluid" src="https://static.pexels.com/photos/33972/pexels-photo.jpg" alt="First slide">
+                            <div class="carousel-caption d-none d-md-block">
+
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img style="height: 13cm;border-style:outset;border-color: #36b666" class="d-block img-fluid" src="https://images.pexels.com/photos/872957/pexels-photo-872957.jpeg" alt="First slide">
+                            <div class="carousel-caption d-none d-md-block">
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-6 login-sec" style="border-style:outset;border-color: #36b666">
+                <h2 class="text-center">Authentification</h2>
+                <img style="font-family: 'Microsoft Himalaya';margin-left: 4cm" src="../../../../assets/img/cl.png"  alt="" class="rounded-circle" >
+
+
+
+                <form style="margin-top: 7px">
+                    <label class="sr-only" for="usrname">Username</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+
+
+                    <label class="sr-only" for="Password">Name</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon2"><i class="fa fa-key"></i></span>
+                        </div>
+                        <input id="Password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon2">
+                    </div>
+                </form>
+                <button  style="margin-bottom: 1cm;margin-top: 30px;margin-left: 40px"(click)="login()" type="button" data-dismiss="modal" class="btn btn-outline-success"><mdb-icon fas icon="check"></mdb-icon> Connexion</button>
+                <a href="" style="margin-left: 5cm">Mots de Passe Oblié?</a>
+            </div>
+        </div>
+    </div>
+</section>

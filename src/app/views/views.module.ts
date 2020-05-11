@@ -27,6 +27,7 @@ import {NavigationModule} from '../main-layout/navigation/navigation.module';
 import { ProduitComponent } from './admin/produit/produit.component';
 import { TarifComponent } from './admin/tarif/tarif.component';
 import {CommandeComponent} from './admin/commande/commande.component';
+import { LoginComponent } from './admin/login/login.component';
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import {CommandeComponent} from './admin/commande/commande.component';
     HomeComponent,
     ProduitComponent,
     TarifComponent,
+    LoginComponent,
 
   ],
     exports: [
@@ -73,7 +75,8 @@ import {CommandeComponent} from './admin/commande/commande.component';
         StatsCardComponent,
         StatsCard2Component,
         Dashboard1Component,
-        HomeComponent
+        HomeComponent,
+        LoginComponent
     ],
   schemas: [NO_ERRORS_SCHEMA]
 })

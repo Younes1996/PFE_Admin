@@ -13,10 +13,11 @@ import { PersonnelComponent } from './views/admin/personnel/personnel.component'
 import {ProduitComponent} from './views/admin/produit/produit.component';
 import {TarifComponent} from './views/admin/tarif/tarif.component';
 import {CommandeComponent} from './views/admin/commande/commande.component';
+import {LoginComponent} from './views/admin/login/login.component';
 
 
 const routes: Route[] = [
-  { path: '', pathMatch: 'full', redirectTo: 'dashboards/v1' },
+  { path: '', pathMatch: 'full', redirectTo: '/login' },
   { path: 'dashboards', children:
     [
       { path: 'v1', component: Dashboard1Component },
@@ -45,6 +46,11 @@ const routes: Route[] = [
     { path: 'admin', children:
             [
                 { path: 'tarif', component:TarifComponent},
+            ]
+    },
+    { path: '', children:
+            [
+                { path: 'login', component:LoginComponent},
             ]
     },
 { path: 'admin', children:
