@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<br>
+
 
 <div class="table-wrapper">
     <div class="table-title">
@@ -170,9 +170,17 @@
 
                         </div>
                     </div>
+                    <div class="md-form md-outline">
+
+                        <select  name="type" id="type" [(ngModel)]="cl.type" class="browser-default custom-select">
+                            <option   selected >{{cl.type}}</option>
+                            <option *ngFor="let t of type" > {{t.name}}</option>
+
+                        </select>
+                    </div>
 
                     <div class="md-form md-outline">
-                        <input mdbInput  name="edit_carte" type="text" id="edit_carte" class="form-control" [(ngModel)]="cl.carte_n"
+                        <input mdbInput  name="edit_carte" type="text" id="edit_carte" class="form-control" [(ngModel)]="cl.carten"
                                required
                                #edit_carte="ngModel"
                                [ngClass]="{'is-invalid':edit_carte.errors && edit_carte.touched}"
@@ -331,9 +339,28 @@
 
                         </div>
                     </div>
+                        <div class="md-form md-outline">
+
+                            <select  name="type" id="tc" [(ngModel)]="cl.type" class="browser-default custom-select">
+                                <option   selected >{{cl.type}}</option>
+                                <option *ngFor="let t of type" > {{t.name}}</option>
+
+                            </select>
+                        </div>
+                        <div class="md-form md-outline">
+                            <input mdbInput  name="pass" type="password" id="pass" class="form-control" [(ngModel)]="cl.password"
+                                   required
+                                   #pass="ngModel"
+                                   [ngClass]="{'is-invalid':pass.errors && pass.touched}"
+                            >
+                            <label for="pass">Mots de Passe</label>
+                            <div [hidden]="!pass.errors?.required" class="invalid-feedback" >
+
+                            </div>
+                        </div>
 
                         <div class="md-form md-outline">
-                            <input mdbInput  name="carte" type="text" id="carte" class="form-control" [(ngModel)]="cl.carte_n"
+                            <input mdbInput  name="carte" type="text" id="carte" class="form-control" [(ngModel)]="cl.carten"
                                    required
                                    #carte="ngModel"
                                    [ngClass]="{'is-invalid':carte.errors && carte.touched}"

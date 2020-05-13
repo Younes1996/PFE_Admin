@@ -5,7 +5,9 @@ export class Clients {
     public prenom:string;
     public adresse:string;
     public tel:string;
-    public carte_n:string;
+    public type:string;
+    public password:string;
+    public carten:string;
     public date_d:string;
     public daira_d:string;
     public carteF:string;
@@ -21,7 +23,9 @@ export class Clients {
         this.prenom = "";
         this.adresse = "";
         this.tel = "";
-        this.carte_n = "";
+        this.type = "";
+        this.password="";
+        this.carten = "";
         this.date_d = "";
         this.daira_d = "";
         this.carteF = "";

@@ -9,8 +9,6 @@
 	<app-na></app-na>
 
 
-
-<br>
 <div class="table-wrapper">
 	<div class="table-title">
 		<div class="row">
@@ -45,7 +43,7 @@
 			<th>Marque</th>
 			<th>Type Mat</th>
 			<th>Etats</th>
-			<th>Fin Aquis</th>
+			<th>Disponibilité</th>
 			<th>Chauffeur</th>
 			<th>Action</th>
 
@@ -68,7 +66,7 @@
 			<td>{{c.marque}}</td>
 			<td>{{c.typeMat}}</td>
 			<td>{{c.etats}}</td>
-			<td>{{c.finAqui}}</td>
+			<td>{{c.disponible}}</td>
 			<td>{{c.chaufeur}}</td>
 
 			<td>
@@ -469,6 +467,15 @@
 						<select  name="etats" id="edit_etats" [(ngModel)]="engin.etats" class="browser-default custom-select">
 							<option selected>{{engin.etats}}</option>
 							<option *ngFor="let e of Etats">{{e.name}}</option>
+						</select>
+					</div>
+					<div class="md-form md-outline">
+
+						<select  name="disp" id="disp" [(ngModel)]="engin.disponible" class="browser-default custom-select">
+							<option disabled selected>{{engin.disponible}}</option>
+							<option >Disponible</option>
+							<option >Indisponible</option>
+
 						</select>
 					</div>
 					<div class="md-form md-outline">

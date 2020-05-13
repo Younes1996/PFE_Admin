@@ -1,7 +1,105 @@
 <app-navigation></app-navigation>
 <br>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div style="margin-left: 8cm;margin-right: 1cm" >
+
+    <div style="border-style:outset;border-color: #36b666">
+
+        <div class="row col-md-12" style="font-family: Garamond;color: white;font-size: 26px;background-color: #36b666;margin-left: 0px"><h2>Information de <b>Client</b></h2>
+        </div>
+
+        <div class="row col-md-12" style="margin-top: 5px;margin-bottom: 5px">
+
+
+            <div class="md-form md-outline col-md-4">
+                <input (keypress)="getClient()"   mdbInput  name="id" type="text" id="id" class="form-control" [(ngModel)]="cl.carten"
+                       required
+                       #id="ngModel"
+                       [ngClass]="{'is-invalid':id.errors && id.touched}"
+
+                >
+                <label for="id" style="margin-left: 8px">Taper N° de Carte</label>
+
+            </div>
+            <div class="md-form md-outline col-sm-4">
+                <input mdbInput  name="edit_Nom" type="text" id="edit_Nom" class="form-control" [(ngModel)]="cl.nom"
+                       required
+                       #edit_Nom="ngModel"
+                       [ngClass]="{'is-invalid':edit_Nom.errors && edit_Nom.touched}"
+                >
+                <label for="edit_Nom"style="margin-left: 8px">Nom</label>
+
+            </div>
+            <div class="md-form md-outline col-md-4">
+                <input mdbInput  name="edit_Prenom" type="text" id="edit_Prenom" class="form-control" [(ngModel)]="cl.prenom"
+                       required
+                       #edit_Prenom="ngModel"
+                       [ngClass]="{'is-invalid':edit_Prenom.errors && edit_Prenom.touched}"
+                >
+                <label for="edit_Prenom"style="margin-left: 8px">Prénom</label>
+
+            </div>
+
+            <div class="md-form md-outline col-md-4">
+                <input mdbInput  name="edit_Adresse" type="text" id="edit_Adresse" class="form-control" [(ngModel)]="cl.adresse"
+                       required
+                       #edit_Adresse="ngModel"
+                       [ngClass]="{'is-invalid':edit_Adresse.errors && edit_Adresse.touched}"
+                >
+                <label for="edit_Adresse"style="margin-left: 8px">Adresse</label>
+
+            </div>
+            <div class="md-form md-outline col-md-4">
+                <input mdbInput  name="edit_tel" type="text" id="edit_tel" class="form-control" [(ngModel)]="cl.tel"
+                       required
+                       #edit_tel="ngModel"
+                       [ngClass]="{'is-invalid':edit_tel.errors && edit_tel.touched}"
+                >
+                <label for="edit_tel"style="margin-left: 8px">Tél</label>
+
+            </div>
+
+            <div class="md-form md-outline col-md-2">
+                <input mdbInput  name="tc" type="text" id="tc" class="form-control" [(ngModel)]="cl.type"
+                       required
+                       #edit_tel="ngModel"
+                       [ngClass]="{'is-invalid':edit_tel.errors && edit_tel.touched}"
+                >
+                <label for="edit_tel"style="margin-left: 8px">Type Client</label>
+
+            </div>
+            <div class="md-form md-outline col-md-2">
+                <input mdbInput  name="edit_tel" type="text" id="ncf" class="form-control" [(ngModel)]="cl.carteF"
+                       required
+                       #edit_tel="ngModel"
+                       [ngClass]="{'is-invalid':edit_tel.errors && edit_tel.touched}"
+                >
+                <label for="ncf"style="margin-left: 8px">N°de CF</label>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+    </div>
+
 
 <div class="table-wrapper">
     <div class="table-title">

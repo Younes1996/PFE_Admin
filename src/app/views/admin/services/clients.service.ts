@@ -41,6 +41,10 @@ getClient_By_Page(size:number,page:number){
   {
     return this.http.get("http://localhost:8080/clients/search/findByNomContaining?nom="+nom);
   }
+  public getByCarte(nom:String):Observable<Object>
+  {
+    return this.http.get("http://localhost:8080/clients/search/findClientByCarten?nom="+nom);
+  }
 
 }
 

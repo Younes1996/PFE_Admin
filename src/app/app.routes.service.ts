@@ -18,9 +18,9 @@ import {LoginComponent} from './views/admin/login/login.component';
 
 const routes: Route[] = [
   { path: '', pathMatch: 'full', redirectTo: '/login' },
-  { path: 'dashboards', children:
+  { path: 'admin', children:
     [
-      { path: 'v1', component: Dashboard1Component },
+      { path: 'v1', component:Dashboard1Component },
     ]
   },
   { path: 'profiles', children:

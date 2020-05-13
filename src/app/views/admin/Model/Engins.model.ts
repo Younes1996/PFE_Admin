@@ -10,6 +10,7 @@ export class Engins {
     public duree:number;
     public finAqui:Date;
     public etats:string;
+    public disponible:string;
     public operation:string;
     public chaufeur:string;
 
@@ -29,6 +30,7 @@ export class Engins {
         this.duree=0.00
         this. finAqui=this. dateAqui;
         this.etats="Etas";
+        this.disponible="Disponible"
         this.operation="Nature de Travail";
         this.chaufeur="Chaufeur";
 

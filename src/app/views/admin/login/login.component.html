@@ -4,7 +4,9 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <section class="login-block">
+
     <div class="container">
+
         <div class="row">
             <div class="col-md-6 banner-sec" >
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -31,7 +33,7 @@
             </div>
 
             <div class="col-md-6 login-sec" style="border-style:outset;border-color: #36b666">
-                <h2 class="text-center">Authentification</h2>
+                <h2 class="text-center" style="color:#2e9a0d ">Authentification</h2>
                 <img style="font-family: 'Microsoft Himalaya';margin-left: 4cm" src="../../../../assets/img/cl.png"  alt="" class="rounded-circle" >
 
 
@@ -54,9 +56,12 @@
                         <input id="Password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon2">
                     </div>
                 </form>
-                <button  style="margin-bottom: 1cm;margin-top: 30px;margin-left: 40px"(click)="login()" type="button" data-dismiss="modal" class="btn btn-outline-success"><mdb-icon fas icon="check"></mdb-icon> Connexion</button>
+                <button  (click)="login()" style="font-weight: bold;margin-top: 10px"  type="button" class="btn btn-outline-success btn-lg btn-block" data-dismiss="modal"><mdb-icon fas icon="check"></mdb-icon> Connexion</button>
                 <a href="" style="margin-left: 5cm">Mots de Passe Oblié?</a>
             </div>
         </div>
     </div>
+    <app-footer></app-footer>
+
 </section>
+

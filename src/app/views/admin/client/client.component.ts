@@ -23,6 +23,10 @@ export class ClientComponent implements OnInit {
     cl: Clients = new Clients();
     public index:number;
     list_Client=[]
+    type=[{id:1,name:'Agriculteur'},{id:2,name:'EAC'},{id:3,name:'Multiplicateur'}]
+
+
+
     constructor(
        private clientService: ClientsService,
 
