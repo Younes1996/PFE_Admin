@@ -99,7 +99,7 @@
 	<div  class="modal-dialog modal-dialog-scrollable" role="document" >
 		<div class="modal-content">
 
-			<div class="modal-header" style="background-color: rgb(20, 91, 161);font-family: garamond;color: white;" >
+			<div class="modal-header" style="background-color: #36b666;font-family: garamond;color: white;" >
 				<h4 class="modal-title w-100" id="myModelTitle"> <i class="material-icons">&#xe7fe;</i> Nouveau Engins</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			</div>
@@ -128,9 +128,9 @@
 					<div class="md-form md-outline">
 
 						<div class="row col-lg-12">
-							<div class="com-lg-10">
+							<div class="com-lg-10" style="width: 50%">
 								<select  name="marque" id="marque"  class="browser-default custom-select" [(ngModel)]="engin.marque">
-									<option selected>{{engin.marque}}</option>
+									<option selected>{{engin.marque}}    </option>
 									<option *ngFor="let m of list_marque">{{m.nom}}</option>
 								</select>
 							</div>
@@ -223,7 +223,7 @@
 						<div class="row ">
 							<div class="col-lg-8">
 								<select  name="operation" id="operation" [(ngModel)]="engin.operation" class="browser-default custom-select">
-									<option selected>{{engin.operation}}</option>
+									<option selected>Nature de Travail</option>
 									<option *ngFor="let o of operation">{{o.operation}}</option>
 								</select>
 							</div>
@@ -263,7 +263,7 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-            <div class="modal-header" style="background-color: rgb(20, 91, 161);font-family: garamond;color: white;" >
+            <div class="modal-header" style="background-color: #36b666;font-family: garamond;color: white;" >
 				<h4 class="modal-title" id="exampleModalLabelss">Ajouter Marque</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -312,7 +312,7 @@
 <div class="modal fade" id="natureTravail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-			<div class="modal-header" style="background-color: rgb(20, 91, 161);font-family: garamond;color: white;" >
+			<div class="modal-header" style="background-color: #36b666;font-family: garamond;color: white;" >
 				<h4 class="modal-title" id="nature">Ajouter N-Travail</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -350,7 +350,7 @@
 	<div  class="modal-dialog modal-dialog-scrollable" role="document" >
 		<div class="modal-content">
 
-			<div class="modal-header" style="background-color: rgb(20, 91, 161);font-family: garamond;color: white;" >
+			<div class="modal-header" style="background-color: #36b666;font-family: garamond;color: white;" >
 				<h4 class="modal-title w-100" id="edit_myModelTitleds"> <i class="material-icons">&#xe7fe;</i> MAJ-Engins</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			</div>

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Clients} from '../Model/Clients.model';
 import {ClientsService} from '../services/clients.service';
+import {Commande} from '../Model/Commande.model';
+import {EnginsService} from '../services/engins.service';
+import Swal from "sweetalert2";
+import {ComandService} from '../services/comand.service';
 
 @Component({
   selector: 'app-commande',
@@ -10,17 +14,31 @@ import {ClientsService} from '../services/clients.service';
 export class CommandeComponent implements OnInit {
   datasource: any;
   list_Client: any;
+  list_Cmd: [];
+  exist:boolean=true
   cl: Clients = new Clients();
-
-
+  cmd:Commande=new Commande();
+  operation:any;
   constructor(
-      private clientService:ClientsService
+      private clientService:ClientsService,
+      private enginService:EnginsService,
+      private comandeService:ComandService
 
   ) { }
 
   ngOnInit(): void {
-  }
+   this.getOperation();
+   this.getComand();
 
+  }
+  getOperation()
+  {
+    this.enginService.getOperation().subscribe(
+        data=>{
+          this.operation=data;
+        }
+    )
+  }
     filter() {
 
     }
@@ -40,8 +58,72 @@ export class CommandeComponent implements OnInit {
         (data:any)=>{
           this.cl=data
 
+        },error => {
+          this.cl=new Clients();
+          this.exist=false
+          console.log(error)
+
         }
 
     )
   }
+
+
+
+  add_cmd() {
+
+console.log(this.cmd)
+
+
+      this.comandeService.ajouter_Commande(this.cmd)
+
+          .subscribe(data =>
+              {
+                console.log(data),
+                    Swal.fire({
+                      position: 'center',
+                      icon: 'success',
+                      title: "La commande est fait avec Succes",
+                      showConfirmButton: false,
+                      timer: 1500
+                    })
+
+                        //this.getClient();
+
+              },error => {
+                console.log(error)
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Erreur ',
+                  text: 'Veuillez réessayer',
+                  footer:''
+                })
+              }
+
+
+
+
+
+          );
+
+
+
+
+    }
+  public getComand(){
+    this.comandeService.getComand().subscribe(
+
+        (data:any)=>{
+         // this.totalPages=data['page'].totalPages
+          //this.pages=new Array<number>(this.totalPages)
+          this.list_Cmd=data._embedded.commandes
+
+        }
+
+    )
+
+  }
+
+
+
 }

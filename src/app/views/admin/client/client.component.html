@@ -68,7 +68,7 @@
 								<label for="checkbox1"></label>
 							</span>
             </td>
-            <td>{{c.id}}</td>
+            <td>{{c.carten}}</td>
             <td>{{c.nom}}</td>
             <td>{{c.prenom}}</td>
             <td>{{c.adresse}}</td>
@@ -83,7 +83,7 @@
 
                 <a  href="#editEmployeeModal"      class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xe8f4;</i></a>
                 <a href="#editModal" (click)="get_Info(c)"   class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                <a (click)="delete_client(c.id)" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                <a (click)="delete_client(c.carten)" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
             </td>
         </tr>
 
@@ -104,21 +104,21 @@
     <div  class="modal-dialog modal-dialog-scrollable" role="document" >
         <div class="modal-content">
 
-            <div class="modal-header" style="background-color: rgb(20, 91, 161);font-family: garamond;color: white;">
+            <div class="modal-header" style="background-color:#36b666;font-family: garamond;color: white;">
                 <h4 class="modal-title w-100" id="editHeader"> <i class="material-icons">&#xe7fe;</i> Modifier Client</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body" >  <!--  Start Body                 !-->
                 <form #client="ngForm" >
                     <div class="md-form md-outline">
-                        <input mdbInput  name="id" type="text" id="id" class="form-control" [(ngModel)]="cl.id"
+                        <input mdbInput  name="edit_carte" type="text" id="edit_carte" class="form-control" [(ngModel)]="cl.carten"
                                required
-                               #id="ngModel"
-                               [ngClass]="{'is-invalid':id.errors && id.touched}"
                                disabled
+                               #edit_carte="ngModel"
+                               [ngClass]="{'is-invalid':edit_carte.errors && edit_carte.touched}"
                         >
-                        <label for="id">N° Client</label>
-                        <div [hidden]="!id.errors?.required" class="invalid-feedback" >
+                        <label for="edit_carte">Carte Nationnel</label>
+                        <div [hidden]="!carte.errors?.required" class="invalid-feedback" >
                             le N° est obligatoir
 
                         </div>
@@ -179,18 +179,7 @@
                         </select>
                     </div>
 
-                    <div class="md-form md-outline">
-                        <input mdbInput  name="edit_carte" type="text" id="edit_carte" class="form-control" [(ngModel)]="cl.carten"
-                               required
-                               #edit_carte="ngModel"
-                               [ngClass]="{'is-invalid':edit_carte.errors && edit_carte.touched}"
-                        >
-                        <label for="edit_carte">Carte Nationnel</label>
-                        <div [hidden]="!carte.errors?.required" class="invalid-feedback" >
-                            le N° est obligatoir
 
-                        </div>
-                    </div>
                     <div class="md-form md-outline">
                         <input mdbInput  name="edit_date_d" type="text" id="edit_date_d" class="form-control" [(ngModel)]="cl.date_d"
                                required
@@ -286,7 +275,7 @@
     <div  class="modal-dialog modal-dialog-scrollable" role="document" >
         <div class="modal-content">
 
-                <div class="modal-header" style="background-color: rgb(20, 91, 161);font-family: garamond;color: white;">
+                <div class="modal-header" style="background-color: #36b666;font-family: garamond;color: white;">
                     <h4 class="modal-title w-100" id="myModelTitle"> <i class="material-icons">&#xe7fe;</i> Nouveau Client</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
@@ -342,7 +331,7 @@
                         <div class="md-form md-outline">
 
                             <select  name="type" id="tc" [(ngModel)]="cl.type" class="browser-default custom-select">
-                                <option   selected >{{cl.type}}</option>
+                                <option selected disabled >{{cl.type}}</option>
                                 <option *ngFor="let t of type" > {{t.name}}</option>
 
                             </select>

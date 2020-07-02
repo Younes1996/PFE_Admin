@@ -25,7 +25,6 @@ export class Clients {
         this.tel = "";
         this.type = "";
         this.password="";
-        this.carten = "";
         this.date_d = "";
         this.daira_d = "";
         this.carteF = "";

@@ -14,6 +14,8 @@ import {ProduitComponent} from './views/admin/produit/produit.component';
 import {TarifComponent} from './views/admin/tarif/tarif.component';
 import {CommandeComponent} from './views/admin/commande/commande.component';
 import {LoginComponent} from './views/admin/login/login.component';
+import {TraveauxComponent} from './views/admin/traveaux/traveaux.component';
+import {ConsommationComponent} from './views/admin/consommation/consommation.component';
 
 
 const routes: Route[] = [
@@ -33,6 +35,16 @@ const routes: Route[] = [
     { path: 'personnel', component: PersonnelComponent },
   ]
 },
+    { path: 'admin', children:
+            [
+                { path: 'traveaux', component: TraveauxComponent },
+            ]
+    },
+    { path: 'admin', children:
+            [
+                { path: 'consommation', component: ConsommationComponent },
+            ]
+    },
   { path: 'admin', children:
         [
           { path: 'commande', component:CommandeComponent},

@@ -31,7 +31,7 @@ export class Engins {
         this. finAqui=this. dateAqui;
         this.etats="Etas";
         this.disponible="Disponible"
-        this.operation="Nature de Travail";
+        this.operation="";
         this.chaufeur="Chaufeur";
 
     }

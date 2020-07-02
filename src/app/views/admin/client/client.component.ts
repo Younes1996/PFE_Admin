@@ -51,7 +51,7 @@ export class ClientComponent implements OnInit {
                             Swal.fire({
                                 position: 'center',
                                 icon: 'success',
-                                title: 'L ajout est fait avec Succes',
+                                title: "L' ajout est fait avec Succes",
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -62,7 +62,7 @@ export class ClientComponent implements OnInit {
                         console.log(error)
                         Swal.fire({
                             icon: 'error',
-                            title: '',
+                            title: 'Erreur ',
                             text: 'Veuillez réessayer',
                             footer:''
                         })
@@ -123,7 +123,7 @@ export class ClientComponent implements OnInit {
     }
 
     update_Client() {
-        this.clientService.updateClient(this.cl,this.cl.id)
+        this.clientService.updateClient(this.cl,this.cl.carten)
             .subscribe(data =>
                 {
                     console.log(data),

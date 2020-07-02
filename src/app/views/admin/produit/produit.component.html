@@ -85,7 +85,7 @@
 <div class="modal" tabindex="-1" role="dialog" id="addProduct">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" style="background-color: #36b666;font-family: garamond;color: white">
                 <h5 class="modal-title">Ajouter Produit</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -135,7 +135,7 @@
                 </div>
 
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" style="background-color: white">
                 <button type="button" class="btn btn-primary" (click)="ajouterProduit()">Ajouter</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
             </div>
@@ -146,7 +146,7 @@
 <div class="modal" tabindex="-1" role="dialog" id="editProduct">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" style="background-color: #36b666;font-family: garamond;color: white">
                 <h5 class="modal-title">Modifier Produit</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -206,7 +206,7 @@
                 </div>
 
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" style="background-color: white">
                 <button type="button" class="btn btn-primary" (click)="updateProduit()">Métre a jour</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
             </div>
@@ -216,8 +216,8 @@
 
 <div class="modal" tabindex="-1" role="dialog" id="tproduit">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
+        <div class="modal-content" >
+            <div class="modal-header" style="background-color: #36b666;font-family: garamond;color: white">
                 <h5 class="modal-title">Ajouter T-Produits</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -242,7 +242,7 @@
 
 
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" style="background-color:white">
                 <button type="button" class="btn btn-primary" [disabled]="!typePr.valid" (click)="ajouterType()">Ajouter</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
             </div>

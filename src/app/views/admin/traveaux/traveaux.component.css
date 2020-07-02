@@ -1,9 +1,11 @@
 body {
-    color: #36b666;
+    color: #566787;
     background: #f5f5f5;
     font-family: 'Varela Round', sans-serif;
     font-size: 13px;
 }
+
+
 .table-wrapper {
     background: #fff;
     padding: 20px 25px;
@@ -201,9 +203,7 @@ table.table .avatar {
 }
 .modal .modal-title {
     display: inline-block;
-
 }
-
 .modal .form-control {
     border-radius: 2px;
     box-shadow: none;
@@ -219,3 +219,23 @@ table.table .avatar {
 .modal form label {
     font-weight: normal;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

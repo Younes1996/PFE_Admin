@@ -5,63 +5,118 @@
 
 <section class="login-block">
 
-    <div class="container">
 
-        <div class="row">
-            <div class="col-md-6 banner-sec" >
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators" >
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner" role="listbox">
-                        <div class="carousel-item active">
-                            <img style="height: 13cm;border-style:outset;border-color: #36b666" class="d-block img-fluid" src="https://static.pexels.com/photos/33972/pexels-photo.jpg" alt="First slide">
-                            <div class="carousel-caption d-none d-md-block">
+<div class="row col-lg-12">
+    <div class="col-lg-8 banner-sec" >
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators" >
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active">
+                    <img style="height:13cm;width:25cm;border-style:outset;border-color: #36b666" class="d-block img-fluid" src="https://static.pexels.com/photos/33972/pexels-photo.jpg" alt="First slide">
+                    <div class="carousel-caption d-none d-md-block">
 
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img style="height: 13cm;border-style:outset;border-color: #36b666" class="d-block img-fluid" src="https://images.pexels.com/photos/872957/pexels-photo-872957.jpeg" alt="First slide">
-                            <div class="carousel-caption d-none d-md-block">
-
-                            </div>
-                        </div>
                     </div>
+                </div>
+                <div class="carousel-item">
+                    <img style="height:13cm;width:25cm;border-style:outset;border-color: #36b666" class="d-block img-fluid" src="https://images.pexels.com/photos/872957/pexels-photo-872957.jpeg" alt="First slide">
+                    <div class="carousel-caption d-none d-md-block">
 
+                    </div>
                 </div>
             </div>
 
-            <div class="col-md-6 login-sec" style="border-style:outset;border-color: #36b666">
-                <h2 class="text-center" style="color:#2e9a0d ">Authentification</h2>
-                <img style="font-family: 'Microsoft Himalaya';margin-left: 4cm" src="../../../../assets/img/cl.png"  alt="" class="rounded-circle" >
-
-
-
-                <form style="margin-top: 7px">
-                    <label class="sr-only" for="usrname">Username</label>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
-
-
-                    <label class="sr-only" for="Password">Name</label>
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon2"><i class="fa fa-key"></i></span>
-                        </div>
-                        <input id="Password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon2">
-                    </div>
-                </form>
-                <button  (click)="login()" style="font-weight: bold;margin-top: 10px"  type="button" class="btn btn-outline-success btn-lg btn-block" data-dismiss="modal"><mdb-icon fas icon="check"></mdb-icon> Connexion</button>
-                <a href="" style="margin-left: 5cm">Mots de Passe Oblié?</a>
-            </div>
         </div>
     </div>
-    <app-footer></app-footer>
+    <div class="col-lg-4 login-sec" style="border-style:outset;border-color: #36b666">
+        <h2 class="text-center" style="color:#2e9a0d ">Authentification</h2>
+        <img style="font-family: 'Microsoft Himalaya';margin-left: 3.5cm" src="../../../../assets/img/cl.png"  alt="" class="rounded-circle" >
+
+
+
+        <form style="margin-top: 7px">
+            <label class="sr-only" for="usrname">Username</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+
+
+            <label class="sr-only" for="Password">Name</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon2"><i class="fa fa-key"></i></span>
+                </div>
+                <input id="Password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon2">
+            </div>
+        </form>
+        <button  (click)="login()" style="font-weight: bold;margin-top: 10px"  type="button" class="btn btn-outline-success btn-lg btn-block" data-dismiss="modal"><mdb-icon fas icon="check"></mdb-icon> Connexion</button>
+        <a (click)="forgot()"  style="margin-left: 5cm;color: #2196F3">Mots de Passe Oblié?</a>
+    </div>
+
+
+</div>
+    <!--Footer-->
+    <footer class="page-footer text-center font-small success-color-dark darken-2 mt-4 wow fadeIn  ">
+
+        <!--Call to action-->
+        <div class="pt-4">
+            <a class="btn btn-outline-white" href="https://www.oaic-office.com/index2.html" target="_blank" role="button">Site OAIC Officiele
+                <mdb-icon fab icon="internet-explorer"></mdb-icon>            </a>
+            <a class="btn btn-outline-white" href="http://madrp.gov.dz/" target="_blank" role="button">Ministre Agriculture
+                <mdb-icon fas icon="graduation-cap" class="ml-2"></mdb-icon>
+            </a>
+        </div>
+        <!--/.Call to action-->
+
+        <hr class="my-4">
+
+        <!-- Social icons -->
+        <div class="pb-4">
+            <a href="https://www.facebook.com/mdbootstrap" target="_blank">
+                <mdb-icon fab icon="facebook-f" class="mr-3"></mdb-icon>
+            </a>
+
+            <a href="https://twitter.com/MDBootstrap" target="_blank">
+                <mdb-icon fab icon="twitter" class="mr-3"></mdb-icon>
+            </a>
+
+            <a href="https://www.youtube.com/watch?v=7MUISDJ5ZZ4" target="_blank">
+                <mdb-icon fab icon="youtube" class="mr-3"></mdb-icon>
+            </a>
+
+            <a href="https://plus.google.com/u/0/b/107863090883699620484" target="_blank">
+                <mdb-icon fab icon="google-plus-g" class="mr-3"></mdb-icon>
+            </a>
+
+            <a href="https://dribbble.com/mdbootstrap" target="_blank">
+                <mdb-icon fab icon="dribbble" class="mr-3"></mdb-icon>
+            </a>
+
+            <a href="https://pinterest.com/mdbootstrap" target="_blank">
+                <mdb-icon fab icon="pinterest" class="mr-3"></mdb-icon>
+            </a>
+
+            <a href="https://github.com/mdbootstrap/bootstrap-material-design" target="_blank">
+                <mdb-icon fab icon="github" class="mr-3"></mdb-icon>
+            </a>
+
+            <a href="http://codepen.io/mdbootstrap/" target="_blank">
+                <mdb-icon fab icon="codepen" class="mr-3"></mdb-icon>
+            </a>
+        </div>
+        <!-- Social icons -->
+
+
+
+    </footer>
+    <!--/.Footer-->
+
 
 </section>
+
 

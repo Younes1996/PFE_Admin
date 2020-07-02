@@ -28,6 +28,8 @@ import { ProduitComponent } from './admin/produit/produit.component';
 import { TarifComponent } from './admin/tarif/tarif.component';
 import {CommandeComponent} from './admin/commande/commande.component';
 import { LoginComponent } from './admin/login/login.component';
+import { TraveauxComponent } from './admin/traveaux/traveaux.component';
+import { ConsommationComponent } from './admin/consommation/consommation.component';
 
 
 @NgModule({
@@ -65,6 +67,8 @@ import { LoginComponent } from './admin/login/login.component';
     ProduitComponent,
     TarifComponent,
     LoginComponent,
+    TraveauxComponent,
+    ConsommationComponent,
 
   ],
     exports: [

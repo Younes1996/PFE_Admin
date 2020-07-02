@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<div style="margin-left: 8cm;margin-right: 1cm" >
+<div style="margin-left: 8cm;margin-right: 1%" >
 
     <div style="border-style:outset;border-color: #36b666">
 
@@ -15,17 +15,20 @@
 
 
             <div class="md-form md-outline col-md-4">
-                <input (keypress)="getClient()"   mdbInput  name="id" type="text" id="id" class="form-control" [(ngModel)]="cl.carten"
+                <input (keyup.enter)="getClient()"   mdbInput  name="id" type="text" id="id" class="form-control" [(ngModel)]="cl.carten"
                        required
                        #id="ngModel"
                        [ngClass]="{'is-invalid':id.errors && id.touched}"
 
                 >
                 <label for="id" style="margin-left: 8px">Taper N° de Carte</label>
-
+                <div *ngIf="!exist" class="invalid-feedback" >
+                    Le N° de Client est n'existe pas!
+                </div>
             </div>
+
             <div class="md-form md-outline col-sm-4">
-                <input mdbInput  name="edit_Nom" type="text" id="edit_Nom" class="form-control" [(ngModel)]="cl.nom"
+                <input mdbInput disabled name="edit_Nom" type="text" id="edit_Nom" class="form-control" [(ngModel)]="cl.nom"
                        required
                        #edit_Nom="ngModel"
                        [ngClass]="{'is-invalid':edit_Nom.errors && edit_Nom.touched}"
@@ -34,7 +37,7 @@
 
             </div>
             <div class="md-form md-outline col-md-4">
-                <input mdbInput  name="edit_Prenom" type="text" id="edit_Prenom" class="form-control" [(ngModel)]="cl.prenom"
+                <input mdbInput disabled name="edit_Prenom" type="text" id="edit_Prenom" class="form-control" [(ngModel)]="cl.prenom"
                        required
                        #edit_Prenom="ngModel"
                        [ngClass]="{'is-invalid':edit_Prenom.errors && edit_Prenom.touched}"
@@ -43,8 +46,8 @@
 
             </div>
 
-            <div class="md-form md-outline col-md-4">
-                <input mdbInput  name="edit_Adresse" type="text" id="edit_Adresse" class="form-control" [(ngModel)]="cl.adresse"
+            <div class="md-form md-outline col-md-4" style="margin-top: 2px">
+                <input mdbInput disabled name="edit_Adresse" type="text" id="edit_Adresse" class="form-control" [(ngModel)]="cl.adresse"
                        required
                        #edit_Adresse="ngModel"
                        [ngClass]="{'is-invalid':edit_Adresse.errors && edit_Adresse.touched}"
@@ -52,8 +55,8 @@
                 <label for="edit_Adresse"style="margin-left: 8px">Adresse</label>
 
             </div>
-            <div class="md-form md-outline col-md-4">
-                <input mdbInput  name="edit_tel" type="text" id="edit_tel" class="form-control" [(ngModel)]="cl.tel"
+            <div class="md-form md-outline col-md-4"style="margin-top: 2px">
+                <input mdbInput disabled name="edit_tel" type="text" id="edit_tel" class="form-control" [(ngModel)]="cl.tel"
                        required
                        #edit_tel="ngModel"
                        [ngClass]="{'is-invalid':edit_tel.errors && edit_tel.touched}"
@@ -62,8 +65,8 @@
 
             </div>
 
-            <div class="md-form md-outline col-md-2">
-                <input mdbInput  name="tc" type="text" id="tc" class="form-control" [(ngModel)]="cl.type"
+            <div class="md-form md-outline col-md-2"style="margin-top: 2px">
+                <input mdbInput disabled name="tc" type="text" id="tc" class="form-control" [(ngModel)]="cl.type"
                        required
                        #edit_tel="ngModel"
                        [ngClass]="{'is-invalid':edit_tel.errors && edit_tel.touched}"
@@ -71,8 +74,8 @@
                 <label for="edit_tel"style="margin-left: 8px">Type Client</label>
 
             </div>
-            <div class="md-form md-outline col-md-2">
-                <input mdbInput  name="edit_tel" type="text" id="ncf" class="form-control" [(ngModel)]="cl.carteF"
+            <div class="md-form md-outline col-md-2" style="margin-top: 2px">
+                <input mdbInput disabled name="edit_tel" type="text" id="ncf" class="form-control" [(ngModel)]="cl.carteF"
                        required
                        #edit_tel="ngModel"
                        [ngClass]="{'is-invalid':edit_tel.errors && edit_tel.touched}"
@@ -133,12 +136,11 @@
             </th>
 
             <th>N° </th>
-            <th>Nom</th>
-            <th>Prénom</th>
-            <th>Adresse</th>
-            <th>Tél</th>
-            <th>Wilaya</th>
-            <th>Daira</th>
+            <th>Type</th>
+            <th >Date Cmd</th>
+            <th>Outils</th>
+            <th>N° Client</th>
+            <th>Etats</th>
             <th>Action</th>
 
 
@@ -149,7 +151,7 @@
         <tbody >
 
 
-        <tr *ngFor=" let c of list_Client " >
+        <tr *ngFor=" let c of list_Cmd " >
             <td>
 							<span class="custom-checkbox">
 								<input type="checkbox" id="checkbox1" name="options[]" value="1">
@@ -157,12 +159,11 @@
 							</span>
             </td>
             <td>{{c.id}}</td>
-            <td>{{c.nom}}</td>
-            <td>{{c.prenom}}</td>
-            <td>{{c.adresse}}</td>
-            <td>{{c.tel}}</td>
-            <td>{{c.wilaya}}</td>
-            <td>{{c.daira}}</td>
+            <td>{{c.type}}</td>
+            <td>{{c.dateCmd}}</td>
+            <td>{{c.outils}}</td>
+            <td>{{c.carten}}</td>
+            <td>{{c.etats}}</td>
 
 
 
@@ -172,11 +173,125 @@
                 <a  href="#editEmployeeModal"      class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xe8f4;</i></a>
                 <a href="#editModal" (click)="get_Info(c)"   class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                 <a (click)="delete_client(c.id)" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+
             </td>
         </tr>
 
 
         </tbody>
+
+
+
     </table>
 </div>
+
+
+
+    <div id="addEmployeeModal" class="modal fade">
+        <div  class="modal-dialog modal-dialog-scrollable" role="document" >
+            <div class="modal-content">
+
+                <div class="modal-header" style="background-color:#36b666;font-family: garamond;color: white;" >
+                    <h4 class="modal-title w-100" id="myModelTitle">  <mdb-icon fas icon="far fa-edit" class="mr-3"></mdb-icon>Nouveau Commande</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body" >  <!--  Start Body                 !-->
+                    <form #client="ngForm" >
+                        <div class="md-form md-outline">
+
+                            <select  name="type" id="tp" [(ngModel)]="cmd.type" class="browser-default custom-select">
+                                <option selected>{{cmd.type}}</option>
+                                <option >Préstation</option>
+                                <option >Location</option>
+                            </select>
+                        </div>
+
+
+                        <div class="md-form md-outline">
+                            <input mdbInput  name="date" type="text" id="date" class="form-control" [(ngModel)]="cmd.dateCmd"
+                                   required
+                                   #date="ngModel"
+                                   [ngClass]="{'is-invalid':date.errors && date.touched}"
+                            >
+                            <label for="date">Date</label>
+                            <div [hidden]="!date.errors?.required" class="invalid-feedback" >
+                            </div>
+                        </div>
+                        <div class="md-form md-outline">
+                            <input mdbInput  name="carten" type="text" id="nclient" class="form-control" [(ngModel)]="cmd.client_carten"
+                                   required
+                                   #nclient="ngModel"
+                                   [ngClass]="{'is-invalid':nclient.errors && nclient.touched}"
+                            >
+                            <label for="date">N°de Client</label>
+                            <div [hidden]="!nclient.errors?.required" class="invalid-feedback" >
+                            </div>
+                        </div>
+                        <div class="md-form md-outline">
+
+                            <select  name="nt" id="nt" [(ngModel)]="cmd.ntravail" class="browser-default custom-select">
+                                <option selected>{{cmd.ntravail}}</option>
+                                <option *ngFor="let o of operation">{{o.operation}}</option>
+                            </select>
+                        </div>
+                        <div class="md-form md-outline">
+
+                            <select  name="outils" id="outils" [(ngModel)]="cmd.outils" class="browser-default custom-select">
+                                <option selected>{{cmd.outils}}</option>
+                                <option *ngFor="let o of operation">{{o.operation}}</option>
+                            </select>
+                        </div>
+
+
+
+
+
+                        <div class="md-form md-outline">
+                            <input mdbInput  name="nbhect" type="number" id="nbhect" class="form-control" [(ngModel)]="cmd.nbre_jour"
+                                   required
+                                   #nbhect="ngModel"
+                                   [ngClass]="{'is-invalid':nbhect.errors && nbhect.touched}"
+                            >
+                            <label for="nbhect">Nombre de Jour</label>
+                            <div [hidden]="!nbhect.errors?.required" class="invalid-feedback" >
+
+                            </div>
+                        </div>
+
+
+                        <div class="md-form md-outline">
+
+                            <select  name="tv" id="tv" [(ngModel)]="cmd.tversement" class="browser-default custom-select">
+                                <option selected>{{cmd.tversement}}</option>
+                                <option *ngFor="let o of operation">{{o.operation}}</option>
+                            </select>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+                    </form>
+
+                </div> <!--  finish Body                 !-->
+
+                <div class="modal-footer" style="background-color: white">
+                    <button type="submit" class="btn btn-outline-primary" (click)="add_cmd()">Enregistrer</button>
+                    <button class="btn btn-danger" data-dismiss="modal">Annuler</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
 </div>
+<app-footer></app-footer>
+
