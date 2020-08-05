@@ -8,7 +8,7 @@ export class Commande {
     public nbre_jour:number;
     public tversement:string;
     public etats:string;
-    public client_carten:string;
+    public client_id:any
 
 
     constructor() {
@@ -18,6 +18,7 @@ export class Commande {
         this.outils = "Outils";
         this.tversement = "Type de Versement";
         this.etats = "En Attente";
+
 
     }
 }

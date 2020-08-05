@@ -1,6 +1,6 @@
 export class Clients {
 
-    public id:string;
+    public id:number;
     public nom:string;
     public prenom:string;
     public adresse:string;
@@ -18,7 +18,6 @@ export class Clients {
 
 
     constructor() {
-        this.id = "";
         this.nom = "";
         this.prenom = "";
         this.adresse = "";

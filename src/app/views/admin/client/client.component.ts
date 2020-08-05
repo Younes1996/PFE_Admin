@@ -123,7 +123,7 @@ export class ClientComponent implements OnInit {
     }
 
     update_Client() {
-        this.clientService.updateClient(this.cl,this.cl.carten)
+        this.clientService.updateClient(this.cl,this.cl.id)
             .subscribe(data =>
                 {
                     console.log(data),
