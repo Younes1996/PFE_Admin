@@ -34,20 +34,23 @@
     "hammerjs": "^2.0.8",
     "jquery": "^3.5.0",
     "jspdf": "^1.5.3",
+    "pdfmake": "^0.1.68",
     "rxjs": "~6.5.2",
     "rxjs-compat": "^6.5.5",
     "sweetalert2": "^9.10.10",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.900.4",
+    "@angular-devkit/build-angular": "^0.1000.6",
     "@angular-devkit/core": "^9.0.5",
     "@angular/cli": "^9.0.5",
     "@angular/compiler-cli": "~9.0.5",
     "@angular/language-service": "~9.0.5",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
+    "@types/jspdf": "^1.3.3",
     "@types/node": "^8.10.59",
+    "@types/pdfmake": "^0.1.14",
     "codelyzer": "~5.1.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
@@ -62,5 +65,17 @@
     "tslib": "^1.9.0",
     "tslint": "~5.11.0",
     "typescript": "~3.7.5"
-  }
+  },
+  "description": "[![Material Design for Bootstrap](https://mdbootstrap.com/wp-content/uploads/2018/03/admin-angular.png)](https://mdbootstrap.com/freebies/angular-admin-dashboard-template-angular-5-material-design/)",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Younes1996/BRIHMAT-Younes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Younes1996/BRIHMAT-Younes/issues"
+  },
+  "homepage": "https://github.com/Younes1996/BRIHMAT-Younes#readme"
 }

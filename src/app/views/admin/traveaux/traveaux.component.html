@@ -12,7 +12,7 @@
                <div>
                    <h2>Réalisations <b>du jour</b></h2>
                </div>
-            <div style="background-color: white;margin-left: 45%;margin-top: 2px">
+            <div style="background-color: white;margin-left: 45%;margin-top: 5px">
                 <button class="btn btn-info" style="margin-left: 7px">Enregistrer</button>
                 <button class="btn btn-warning" style="margin-left: 7px">Modifier</button>
                 <button class="btn btn-danger" style="margin-left: 7px">Supprimer</button>
@@ -24,18 +24,18 @@
 
          <div class="row md-form md-outline col-md-12">
 
-             <div class="col-md-7" style="border-style: dotted;margin-left: 40px;margin-right: 8px">
+             <div class="col-md-7" style="border-style: double;margin-left: 40px;margin-right: 8px">
 
                      <div class="md-form md-outline col-md-5">
-                         <input (keyup.enter)="getClient()"   mdbInput  name="id" type="text" id="id" class="form-control" [(ngModel)]="cl.carten"
+                         <input   (keyup.enter)="getClient()"   mdbInput  name="id" type="text" id="id" class="form-control" [(ngModel)]="cl.carten"
                                 required
                                 #id="ngModel"
                                 [ngClass]="{'is-invalid':id.errors && id.touched}"
-                                style="border-color: #2196F3;font-family: Garamond"
+                                style="border-color: #2196F3;font-family: Garamond;width: 10.7cm"
 
 
                          >
-                         <label for="id" style="margin-left: 8px">N° de Comamnde</label>
+                         <label for="id" style="margin-left: 8px;">N° de Comamnde</label>
                          <div *ngIf="!exist" class="invalid-feedback" >
                              Le N° de Commande est n'existe pas!
                          </div>
@@ -61,7 +61,7 @@
                                     required
                                     #heur="ngModel"
                                     [ngClass]="{'is-invalid':heur.errors && heur.touched}"
-                                    style="border-color: #2196F3;font-family: Garamond"
+                                    style="border-color: #2196F3;font-family: Garamond;width: 6cm"
 
                              >
                              <label for="heur"style="margin-left: 8px">Heur</label>
@@ -72,7 +72,7 @@
                                         required
                                         #matricule="ngModel"
                                         [ngClass]="{'is-invalid':matricule.errors && matricule.touched}"
-                                        style="border-color: #2196F3;font-family: Garamond"
+                                        style="border-color: #2196F3;font-family: Garamond;width: 5cm"
 
                                  >
                                  <label for="matricule"style="margin-left: 8px">Immatriculation</label>
@@ -83,7 +83,7 @@
                                         required
                                         #nserie="ngModel"
                                         [ngClass]="{'is-invalid':nserie.errors && nserie.touched}"
-                                        style="border-color: #2196F3;font-family: Garamond"
+                                        style="border-color: #2196F3;font-family: Garamond;width: 5cm"
 
                                  >
                                  <label for="nserie"style="margin-left: 8px">N° de série</label>
@@ -94,7 +94,7 @@
                                         required
                                         #jour="ngModel"
                                         [ngClass]="{'is-invalid':jour.errors && jour.touched}"
-                                        style="border-color: #2196F3;font-family: Garamond"
+                                        style="border-color: #2196F3;font-family: Garamond;width: 6cm"
 
                                  >
                                  <label for="jour"style="margin-left: 8px">Jour</label>
@@ -113,7 +113,7 @@
 
              </div>
 
-             <div class="col-md-4" style="border-style:dotted">
+             <div class="col-md-4" style="border-style:double">
                  <div class="md-form md-outline col-md-10">
                      <input (keyup.enter)="getClient()"   mdbInput  name="f_name" type="text" id="n_prenom" class="form-control" [(ngModel)]="cl.carten"
                             required

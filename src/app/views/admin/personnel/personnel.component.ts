@@ -250,8 +250,7 @@ export class PersonnelComponent implements OnInit {
     get_Previouss_Page() {
         this.currentpage=this.currentpage-1
         this.onGetEmploye();
-
-
-
     }
+
+
 }
